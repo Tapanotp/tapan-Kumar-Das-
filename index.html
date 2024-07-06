@@ -9,32 +9,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #222;
+            color: #fff;
+        }
+        .header img {
+            height: 50px;
+        }
+        .header-links {
+            display: flex;
+            align-items: center;
+        }
+        .header-links ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .header-links ul li {
+            margin: 0 10px;
+        }
+        .header-links ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .header-links .menu-icon, .header-links .cancel-icon {
+            display: none;
+        }
+        .footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .footer p {
+            margin: 0;
+            padding: 0;
+        }
+        .footer a {
+            color: #00aced;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 40px;
+        }
+        .about-section .img-div {
+            flex: 1;
+            margin: 20px;
+            text-align: center;
+        }
+        .about-section .img-div video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .about-section div[data-aos="fade-down-left"] {
+            flex: 1;
+            margin: 20px;
+            max-width: 600px;
+        }
+        ol {
+            list-style: none;
+            padding: 0;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+            }
+            .header-links ul {
+                flex-direction: column;
+                display: none;
+            }
+            .header-links .menu-icon {
+                display: block;
+            }
+            .header-links.active ul {
+                display: flex;
+            }
+            .header-links .cancel-icon {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="theme-picker">
         <input type="color" id="theme" title="select color theme">
     </div>
-    <header>
+    <header class="header">
         <div>
-            <a href="./index.html"><span class="logo-text"><span class="blue-span"></span></span></a>
+            <a href="./index.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrHcgTivobuPgZ3YME8BEJwGmQTeAlFx0Ebw&s" alt="Logo"></a>
         </div>
         <div class="header-links">
             <div class="cancel-icon">
                 <i class="fa-solid fa-xmark" style="font-size: larger;"></i>
             </div>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index.html#about">About</a></li>
+                <li><a href="./index.html">Contact</a></li>
+            </ul>
             <div>
-                <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./index.html#about">About</a></li>
-                    <li><a href="./index.html">Contact</a></li>
-                </ul>
+                <a href="/" target="_blank"><button class="fa-brands fa-web"></button></a>
             </div>
-            <div>
-                <a href="/" target="_blank"><button class="fa-brands fa-web"> </button></a>
+            <div class="menu-icon">
+                <i class="fa-solid fa-bars"></i>
             </div>
-        </div>
-        <div class="menu-icon">
-            <i class="fa-solid fa-bars"></i>
         </div>
     </header>
     <main>
@@ -56,10 +153,51 @@
                 <a href="#about"><button class="btn">Read More</button></a>
             </div>
             <div class="hero-img" data-aos="fade-down-left">
-                <video width="560" height="315" autoplay muted loop>
-                    <source src="VRRRV.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div class="slider">
+                    <div class="slides">
+                        <!-- Radio buttons for slider navigation -->
+                        <input type="radio" name="radio-btn" id="radio1">
+                        <input type="radio" name="radio-btn" id="radio2">
+                        <input type="radio" name="radio-btn" id="radio3">
+                        <input type="radio" name="radio-btn" id="radio4">
+                        <input type="radio" name="radio-btn" id="radio5">
+                        
+                        <!-- Slide images -->
+                        <div class="slide first">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyVZoD7w2ahztv8fDShhSABY2Im7Hhf4feXA&s" alt="virtual">
+                        </div>
+                        <div class="slide">
+                            <img src="1st.jpg" alt="virtual">
+                        </div>
+                        <div class="slide">
+                            <img src="2nd.jpg" alt="virtual">
+                        </div>
+                        <div class="slide">
+                            <img src="3rd.jpg" alt="virtual">
+                        </div>
+                        <div class="slide">
+                            <img src="4th.jpg" alt="virtual">
+                        </div>
+                        
+                        <!-- Navigation auto buttons -->
+                        <div class="navigation-auto">
+                            <div class="auto-btn1"></div>
+                            <div class="auto-btn2"></div>
+                            <div class="auto-btn3"></div>
+                            <div class="auto-btn4"></div>
+                            <div class="auto-btn5"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Manual navigation -->
+                    <div class="navigation-manual">
+                        <label for="radio1" class="manual-btn"></label>
+                        <label for="radio2" class="manual-btn"></label>
+                        <label for="radio3" class="manual-btn"></label>
+                        <label for="radio4" class="manual-btn"></label>
+                        <label for="radio5" class="manual-btn"></label>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="service-section">
@@ -87,7 +225,10 @@
         </section>
         <section class="about-section" id="about">
             <div class="img-div" data-aos="fade-down-right">
-                <img src="" alt="virtual">
+                <video width="560" height="315" autoplay muted loop>
+                    <source src="VRRR.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             <div data-aos="fade-down-left">
                 <ol>
@@ -97,27 +238,27 @@
                     <li><strong>Place : </strong>Naikudi,Basta,Balasore</li>
                     <li><strong>Email : </strong><a href="mailto:tapantapanki10@gmail.com">tapantapanki10@gmail.com</a></li>
                     <li><strong>Phone : </strong><a href="tel:+91 9827058262">+91 9827058262</a></li>
-                    <li><a href="#" target="_blank"><button class="btn">Connect me</button></a></li>
+                    <li><a href="#" target="_blank"><button class="btn">Book now</button></a></li>
                 </ol>
             </div>
         </section>
-        <section class="contact-section" id="contact">
-            <h1 data-aos="zoom-in-up">My <span class="blue-span heading">Contact</span></h1>
-            <form action="#">
-                <input data-aos="zoom-in-up" type="text" name="userName" placeholder="Your Name">
-                <input data-aos="zoom-in-up" type="email" name="email" placeholder="Your Mail">
-                <textarea data-aos="zoom-in-up" name="message" cols="30" rows="10" placeholder="Your Message"></textarea>
-                <button data-aos="zoom-in-up" class="submit-btn">Submit</button>
-            </form>
-        </section>
     </main>
-    <footer>
-        <p>&copy; 2024-25<a href="#" target="_blank"></a> - AllRights Reserved.(TAPAN KUMAR DAS)</p>
+    <footer class="footer">
+        <p>&copy; 2024-25 <a href="#" target="_blank">Tapan Kumar Das</a> - All Rights Reserved.</p>
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
     <script>
       AOS.init();
+
+      let counter = 1;
+      setInterval(function(){
+        document.getElementById('radio' + counter).checked = true;
+        counter++;
+        if(counter > 5){
+          counter = 1;
+        }
+      }, 5000);
     </script>
 </body>
 </html>
