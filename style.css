@@ -20,6 +20,8 @@ main {
 
 :root {
     --primary-color: #1b1f24;
+    
+    
     --primary-theme-color: #12bdff;
     --primary-white: #fff;
     --primary-yellow: #ffba53;
@@ -29,6 +31,9 @@ main {
 
 .blue-span {
     color: var(--primary-theme-color);
+}
+
+.blue-span:hover {
 }
 
 .heading {
@@ -53,7 +58,7 @@ main {
 
 a {
     text-decoration: none;
-    color: var(--primary-white);
+    var(--primary-white);
 }
 
 img {
@@ -199,97 +204,6 @@ header button:hover {
     color: #4078c0;
 }
 
-/* Slider CSS */
-.slider {
-    width: 500px;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-}
-
-.slides {
-    width: 500%;
-    height: 100%;
-    display: flex;
-}
-
-.slides input {
-    display: none;
-}
-
-.slide {
-    width: 20%;
-    transition: 0.6s;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-}
-
-.navigation-manual {
-    position: absolute;
-    width: 100%;
-    margin-top: -40px;
-    display: flex;
-    justify-content: center;
-}
-
-.manual-btn {
-    border: 2px solid var(--primary-theme-color);
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 1s;
-}
-
-.manual-btn:not(:last-child) {
-    margin-right: 40px;
-}
-
-.manual-btn:hover {
-    background-color: var(--primary-theme-color);
-}
-
-.navigation-auto {
-    position: absolute;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 260px;
-}
-
-.navigation-auto div {
-    border: 2px solid var(--primary-theme-color);
-    padding: 5px;
-    border-radius: 10px;
-    transition: 1s;
-}
-
-.navigation-auto div:not(:last-child) {
-    margin-right: 40px;
-}
-
-#radio1:checked ~ .first {
-    margin-left: 0;
-}
-
-#radio2:checked ~ .first {
-    margin-left: -20%;
-}
-
-#radio3:checked ~ .first {
-    margin-left: -40%;
-}
-
-#radio4:checked ~ .first {
-    margin-left: -60%;
-}
-
-#radio5:checked ~ .first {
-    margin-left: -80%;
-}
-
 /* about section */
 .about-section {
     min-height: 100vh;
@@ -340,6 +254,7 @@ header button:hover {
     color: var(--primary-white);
 }
 
+
 .service-section {
     display:flex;
     flex-direction: column;
@@ -379,6 +294,8 @@ header button:hover {
 
 .service-card a:hover {
     color: var(--primary-yellow-hover);
+
+
 }
 
 .service-card p {
@@ -394,6 +311,7 @@ header button:hover {
 }
 
 /* contact Section */
+
 .contact-section {
   height: 100vh;
     background-color: var(--primary-light-color);
@@ -401,108 +319,137 @@ header button:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 5vh;
+    padding: 60px 80px;
+}
+
+.contact-section h1 {
+    color: var(--primary-white);
 }
 
 .contact-section form {
-    width: 500px;
-    max-width: 80%;
     display: flex;
     flex-direction: column;
-}
-
-.contact-section form input {
-    margin-bottom: 20px;
+    width: 500px;
     padding: 20px;
-    background-color: var(--primary-color);
-    color: var(--primary-white);
-    border-radius: 10px;
-    border: none;
-    outline: none;
+
 }
 
-.contact-section form textarea {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: var(--primary-color);
-    color: var(--primary-white);
-    border-radius: 10px;
+.contact-section form input,
+textarea {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+    margin: 10px 0;
+    padding: 10px;
     border: none;
+    border-radius: 10px;
+    resize: none;
     outline: none;
+
+
 }
 
-.contact-section form input::placeholder,
-.contact-section form textarea::placeholder {
+/* footer section */
+
+footer {
+    background-color: var(--primary-color);
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    font-size: 12px;
     color: var(--primary-grey);
 }
 
-/* responsive queries */
-@media (max-width: 768px) {
-    .header-links {
-        display: none;
-    }
-
-    .menu-icon {
-        display: block;
-        font-size: x-large;
-    }
+footer p a {
+    color: var(--primary-white);
 }
 
-@media (max-width: 400px) {
-    .hero-text {
-        font-size: smaller;
-        padding: 20px;
-    }
+footer p a:hover {
+    color: var(--primary-theme-color);
 }
 
-@media (max-width: 900px) {
-    .hero-section {
-        flex-direction: column;
-    }
+/* media queries  */
 
+@media (max-width: 860px) {
+
+    /* header media queries */
     .header-links {
-        position: fixed;
+        position: absolute;
         flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        background-color: var(--primary-color);
         height: 100vh;
-        width: 100vw;
         top: 0;
-        right: 0;
-        z-index: 10;
+        right: -100vh;
         display: none;
+        background-color: var(--primary-color);
+        justify-content: start;
+        padding: 20px;
+        transition: right 0.3s ease;
+        box-shadow: 2px 5px 15px var(--primary-theme-color);
+    }
+
+    header ul {
+        margin-top: 40px;
+        flex-direction: column;
+        line-height: 3rem;
     }
 
     .cancel-icon {
         display: block;
+        position: absolute;
+        right: 20px;
+        top: 18px;
+        width: 20px;
+        height: 20px;
     }
 
+    .menu-icon {
+        display: block;
+    }
+
+
+    /* hero section media queries */
+    .hero-section {
+        flex-direction: column;
+    }
+
+    /* service section */
     .service-cards-container {
         flex-direction: column;
     }
 
-    .hero-img {
-        display: flex;
-        justify-content: center;
+    .service-card {
+        margin: 10px 0;
     }
 
-    .hero-img img {
-        width: 400px;
-    }
-
+    /* about section media queries */
     .about-section {
         flex-direction: column;
-        padding: 50px;
-    }
-
-    .about-section img {
-        width: 400px;
-        height: auto;
     }
 
     .about-section ol {
         margin-left: 0;
-        margin-top: 50px;
+        margin-top: 40px;
     }
+
+    .about-section img {
+        height: auto;
+    }
+
+    .about-section ol li h1 {
+        font-size: 30px;
+    }
+
+    .about-section {
+        padding: 40px 30px;
+    }
+
+    
+    .contact-section form {
+        display: flex;
+       
+        width: 100%;
+        padding: 20px 0;
+
+    }
+
 }
