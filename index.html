@@ -1,429 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags, title, and external links -->
-    <!-- ... -->
-    <style>
-         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,700;1,300&family=Poppins:wght@400;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-    overflow-x:hidden;
-}
-
-main {
-  width: 100vw;
-  padding: none;
-  overflow: hidden;
-}
-
-:root {
-    --primary-color: #1b1f24;
-    --primary-theme-color: #12bdff;
-    --primary-white: #fff;
-    --primary-yellow: #ffba53;
-    --primary-yellow-hover: #ff8f8f;
-    --primary-grey: #969595;
-}
-
-.blue-span {
-    color: var(--primary-theme-color);
-}
-
-.heading {
-  border-bottom: 1px solid var(--primary-theme-color);
-}
-
-.grey-span {
-    color: var(--primary-grey);
-}
-
-.btn {
-    background-color: var(--primary-color);
-    color: var(--primary-theme-color);
-    border: 2px solid var(--primary-theme-color);
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.btn:hover {
-    box-shadow: 2px var(--primary-theme-color);
-}
-
-a {
-    text-decoration: none;
-    color: var(--primary-white);
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-input[type="color"] {
-    border: none;
-}
-
-input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
-}
-
-input[type="color"]::-webkit-color-swatch {
-    border: none;
-}
-
-.theme-picker {
-    width: 25px;
-    height: 25px;
-    position: fixed;
-    bottom: 50px;
-    right: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.submit-btn {
-    font-weight: 900;
-    padding: 10px;
-    background-color: var(--primary-theme-color);
-    color: var(--primary-white);
-    border: 2px solid var(--primary-theme-color);
-    border-radius: 10px;
-}
-
-.submit-btn:hover {
-    cursor: pointer;
-    background-color: var(--primary-color);
-    color: var(--primary-white);
-}
-
-/* header styles */
-header {
-    background-color: var(--primary-color);
-    padding: 20px;
-    color: var(--primary-white);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-header ul {
-    display: flex;
-    list-style: none;
-}
-
-header ul li {
-    margin-right: 20px;
-}
-
-header ul li a {
-    text-decoration: none;
-    color: var(--primary-white);
-}
-
-header ul li a:hover {
-    color: var(--primary-theme-color);
-}
-
-header button {
-    font-weight: 900;
-    padding: 10px;
-    background-color: var(--primary-color);
-    color: var(--primary-theme-color);
-    border: 2px solid var(--primary-theme-color);
-    border-radius: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
-}
-
-header button:hover {
-    cursor: pointer;
-    background-color: var(--primary-theme-color);
-    color: var(--primary-white);
-}
-
-.logo-text {
-    letter-spacing: 2px;
-}
-
-.header-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 45%;
-}
-.cancel-icon {
-    display: none;
-}
-.menu-icon {
-    display: none;
-}
-.hero-section {
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-  align-items:center;
-  background-color: var(--primary-color);
-}
-.hero-text {
-    display:flex;
-    flex-direction: column;
-    color: var(--primary-white);
-    padding: 50px;
-    row-gap: 1vh;
-}
-.social-icon {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: inline;
-    column-gap: 2vw;
-}
-.social-icon a i.fa-instagram:hover {
-    border-radius: 5px;
-    background: #f09433;
-    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
-}
-
-.social-icon a i.fa-linkedin:hover {
-    color: #0072b1;
-}
-
-.social-icon a i.fa-github:hover {
-    color: #4078c0;
-}
-
-/* Slider CSS */
-.slider {
-    width: 500px;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-}
-
-.slides {
-    width: 500%;
-    height: 100%;
-    display: flex;
-}
-
-.slides input {
-    display: none;
-}
-
-.slide {
-    width: 20%;
-    transition: 0.6s;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-}
-
-.navigation-manual {
-    position: absolute;
-    width: 100%;
-    margin-top: -40px;
-    display: flex;
-    justify-content: center;
-}
-
-.manual-btn {
-    border: 2px solid var(--primary-theme-color);
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 1s;
-}
-
-.manual-btn:not(:last-child) {
-    margin-right: 40px;
-}
-
-.manual-btn:hover {
-    background-color: var(--primary-theme-color);
-}
-
-.navigation-auto {
-    position: absolute;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 260px;
-}
-
-.navigation-auto div {
-    border: 2px solid var(--primary-theme-color);
-    padding: 5px;
-    border-radius: 10px;
-    transition: 1s;
-}
-
-.navigation-auto div:not(:last-child) {
-    margin-right: 40px;
-}
-
-#radio1:checked ~ .first {
-    margin-left: 0;
-}
-
-#radio2:checked ~ .first {
-    margin-left: -20%;
-}
-
-#radio3:checked ~ .first {
-    margin-left: -40%;
-}
-
-#radio4:checked ~ .first {
-    margin-left: -60%;
-}
-
-#radio5:checked ~ .first {
-    margin-left: -80%;
-}
-
-/* about section */
-.about-section {
-    min-height: 100vh;
-    background-color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 80px;
-}
-
-.img-div {
-    height: 300px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-section img {
-    background-color: var(--primary-light-color);
-    border: 2px solid var(--primary-theme-color);
-    border-radius: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
-}
-
-.about-section ol {
-    list-style: none;
-    color: var(--primary-white);
-    margin-left: 90px;
-}
-
-.about-section ol li h1 {
-    color: var(--primary-white);
-    margin-bottom: 10px;
-}
-
-.about-section li {
-    margin-bottom: 10px;
-    color: var(--primary-grey);
-}
-
-.about-section li a {
-    color: var (--primary-grey);
-}
-
-.about-section li a:hover {
-    color: var(--primary-theme-color);
-}
-
-.about-section li strong {
-    color: var(--primary-white);
-}
-
-.service-section {
-    display:flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    background-color: var(--primary-light-color);
-    color: var(--primary-white);
-    display: flex;
-}
-
-.service-cards-container {
-    display: flex;
-    margin-top: 20px;
-}
-
-.service-card {
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
-    max-width: 95vw;
-    background-color: var(--primary-color);
-    padding: 20px;
-    border-radius: 20px;
-    margin: 0 10px;
-}
-
-.service-card:hover {
-    background-color: var(--primary-color-hover);
-    box-shadow: 2px 5px 20px var(--primary-color);
-}
-
-.service-card a {
-    color: var(--primary-yellow);
-}
-
-.service-card a:hover {
-    color: var(--primary-yellow-hover);
-}
-
-.footer {
-    width: 100vw;
-    padding: 10px;
-    background-color: var(--primary-color);
-    color: var(--primary-white);
-    text-align: center;
-}
-
-@media only screen and (max-width: 600px) {
-  .service-card {
-    width: 100%;
-  }
-  .img-div {
-    width: 100%;
-    height: auto;
-  }
-  .hero-section {
-    flex-direction: column;
-    padding: 20px;
-  }
-  .hero-text {
-    text-align: center;
-    padding: 10px;
-  }
-  .slider {
-    width: 100%;
-    height: auto;
-  }
-}
- /* Insert the updated CSS here */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapan Virtual Reality</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
-   
+    <div class="theme-picker">
+        <input type="color" id="theme" title="select color theme">
+    </div>
+    <header>
+        <div>
+            <a href="./index.html"><span class="logo-text"><span class="blue-span"></span></span></a>
+        </div>
+        <div class="header-links">
+            <div class="cancel-icon">
+                <i class="fa-solid fa-xmark" style="font-size: larger;"></i>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./index.html#about">About</a></li>
+                    <li><a href="./index.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <a href="/" target="_blank"><button class="fa-brands fa-web"> </button></a>
+            </div>
+        </div>
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
     <main>
         <section class="hero-section">
             <div class="hero-text" data-aos="fade-up-right">
@@ -442,29 +55,45 @@ header button:hover {
                 </div>
                 <a href="#about"><button class="btn">Read More</button></a>
             </div>
-            <div class="img-div" data-aos="fade-down-right">
+            <div class="hero-img" data-aos="fade-down-left">
                 <video width="560" height="315" autoplay muted loop>
-                    <source src="VRRRV.mp4" type="video/mp4">
+                    <source src="vrvideo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
         </section>
-
         <section class="service-section">
+            <h1>My <span class="blue-span heading">Services</span></h1>
+            <div class="service-cards-container">
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fa-solid fa-earth-asia"></i>
+                    <h4> </h4>
+                    <p> Using Technology to digitalize you.</p>
+                    <a href="#">view </a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fa-solid fa-shapes"></i>
+                    <h4>Entatairner</h4>
+                    <p>I Design - website , app, webapp</p>
+                    <a href="#">view </a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fa-solid fa-icons"></i>
+                    <h4></h4>
+                    <p> The use of computer modeling and simulation that enables a person to interact with an artificial three-dimensional (3-D) visual or other sensory environment</p>
+                    <a href="#">view</a>
+                </div>
+            </div>
+        </section>
+        <section class="about-section" id="about">
             <div class="hero-img" data-aos="fade-down-left">
                 <div class="slider">
                     <div class="slides">
                         <!-- Radio buttons for slider navigation -->
-                        <input type="radio" name="radio-btn" id="radio1">
-                        <input type="radio" name="radio-btn" id="radio2">
-                        <input type="radio" name="radio-btn" id="radio3">
-                        <input type="radio" name="radio-btn" id="radio4">
-                        <input type="radio" name="radio-btn" id="radio5">
+                       
                         
                         <!-- Slide images -->
-                        <div class="slide first">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyVZoD7w2ahztv8fDShhSABY2Im7Hhf4feXA&s" alt="virtual">
-                        </div>
+                        
                         <div class="slide">
                             <img src="1st.jpg" alt="virtual">
                         </div>
@@ -479,7 +108,13 @@ header button:hover {
                         </div>
                         
                         <!-- Navigation auto buttons -->
-                        
+                        <div class="navigation-auto">
+                            <div class="auto-btn1"></div>
+                            <div class="auto-btn2"></div>
+                            <div class="auto-btn3"></div>
+                            <div class="auto-btn4"></div>
+                            <div class="auto-btn5"></div>
+                        </div>
                     </div>
                     
                     <!-- Manual navigation -->
@@ -491,11 +126,7 @@ header button:hover {
                         <label for="radio5" class="manual-btn"></label>
                     </div>
                 </div>
-            </div> <!-- Service section content -->
-        </section>
-
-        <section class="about-section" id="about">
-            
+            </div>
             <div data-aos="fade-down-left">
                 <ol>
                     <li>
@@ -504,27 +135,25 @@ header button:hover {
                     <li><strong>Place : </strong>Naikudi,Basta,Balasore</li>
                     <li><strong>Email : </strong><a href="mailto:tapantapanki10@gmail.com">tapantapanki10@gmail.com</a></li>
                     <li><strong>Phone : </strong><a href="tel:+91 9827058262">+91 9827058262</a></li>
-                    <li><a href="#" target="_blank"><button class="btn">Book now</button></a></li>
+                    <li><a href="https://wa.me/qr/J2NO2JRL67SQD1" target="_blank"><button class="btn">BOOK NOW</button></a></li>
                 </ol>
             </div>
         </section>
+        <section class="contact-section" id="contact">
+            <h1 data-aos="zoom-in-up"> <span class="blue-span heading">You can Pay here</span></h1>
+            <div class="slide">
+                <img src="QR.jpg" alt="QR">
+            </div>
+                    
+        </section>
     </main>
-    <footer class="footer">
-        <p>&copy; 2024-25 <a href="#" target="_blank">Tapan Kumar Das</a> - All Rights Reserved.</p>
+    <footer>
+        <p>&copy; 2024-25<a href="#" target="_blank"></a> - AllRights Reserved.(TAPAN KUMAR DAS)</p>
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
     <script>
       AOS.init();
-
-      let counter = 1;
-      setInterval(function(){
-        document.getElementById('radio' + counter).checked = true;
-        counter++;
-        if(counter > 5){
-          counter = 1;
-        }
-      }, 5000);
     </script>
 </body>
 </html>
