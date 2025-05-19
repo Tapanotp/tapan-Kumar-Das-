@@ -3,432 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyPlus - Digital Wallet</title>
+    <title>MobilePay - Recharge & Earn Money</title>
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
         }
-        
         .container {
-            max-width: 1200px;
+            max-width: 500px;
             margin: 0 auto;
             padding: 20px;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 20px 0;
+            padding: 15px;
             text-align: center;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
         }
-        
-        .auth-form {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            max-width: 400px;
-            margin: 30px auto;
-        }
-        
-        .auth-form h2 {
-            margin-top: 0;
-            color: #4CAF50;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
+        .logo {
+            font-size: 24px;
             font-weight: bold;
         }
-        
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-        button {
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .wallet-balance {
+            font-size: 28px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .btn {
             background-color: #4CAF50;
             color: white;
             border: none;
             padding: 10px 15px;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
             width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
         }
-        
-        button:hover {
-            background-color: #45a049;
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
         }
-        
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 30px 0;
+        .form-group {
+            margin-bottom: 15px;
         }
-        
-        .feature-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 30%;
-            margin-bottom: 20px;
-            text-align: center;
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
         }
-        
-        .feature-card h3 {
-            color: #4CAF50;
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
         }
-        
-        .hidden {
+        .otp-container {
             display: none;
         }
-        
-        .otp-info {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+        .tab-container {
+            display: flex;
+            margin-bottom: 15px;
         }
-        
-        footer {
+        .tab {
+            flex: 1;
             text-align: center;
-            padding: 20px;
-            background-color: #333;
+            padding: 10px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        .tab.active {
+            background-color: #4CAF50;
             color: white;
-            margin-top: 30px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .referral-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .referral-code {
+            font-weight: bold;
+            font-size: 18px;
+            color: #4CAF50;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .transaction-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .transaction-amount {
+            float: right;
+            font-weight: bold;
+        }
+        .positive {
+            color: #4CAF50;
+        }
+        .negative {
+            color: #f44336;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>MoneyPlus</h1>
-            <p>Your Digital Wallet Solution</p>
-        </div>
-    </header>
-    
     <div class="container">
-        <!-- Signup/Login Form -->
-        <div id="auth-container" class="auth-form">
-            <h2>Sign Up / Login</h2>
-            <div id="phone-form">
-                <div class="form-group">
-                    <label for="phone">Mobile Number</label>
-                    <input type="tel" id="phone" placeholder="Enter your mobile number" maxlength="10">
-                </div>
-                <button onclick="sendOTP()">Send OTP</button>
+        <header>
+            <div class="logo">MobilePay</div>
+            <div>Recharge & Earn Money</div>
+        </header>
+
+        <!-- Login/Signup Section -->
+        <div class="section" id="auth-section">
+            <div class="section-title">Sign In / Register</div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" placeholder="Enter 10 digit mobile number" maxlength="10">
             </div>
+            <button class="btn" id="send-otp-btn">Send OTP</button>
             
-            <div id="otp-form" class="hidden">
+            <div class="otp-container" id="otp-container">
                 <div class="form-group">
                     <label for="otp">Enter OTP</label>
-                    <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6">
-                    <p class="otp-info">OTP sent to +91 XXXXXXX<span id="last-digits"></span></p>
+                    <input type="tel" id="otp" placeholder="Enter 6 digit OTP" maxlength="6">
                 </div>
-                <button onclick="verifyOTP()">Verify OTP</button>
-                <p style="text-align: center; margin-top: 10px;">
-                    <a href="#" onclick="backToPhone()">Change Number</a>
-                </p>
+                <button class="btn" id="verify-otp-btn">Verify OTP</button>
             </div>
         </div>
-        
-        <!-- Main Dashboard (hidden initially) -->
-        <div id="dashboard" class="hidden">
-            <h2>Welcome, <span id="user-name">User</span>!</h2>
+
+        <!-- Wallet Section (hidden initially) -->
+        <div class="section" id="wallet-section" style="display: none;">
+            <div class="section-title">My Wallet</div>
+            <div class="wallet-balance">
+                ₹ <span id="wallet-amount">20.00</span>
+            </div>
+            <div class="section-title">Recent Transactions</div>
+            <div id="transactions-list">
+                <div class="transaction-item">
+                    <div>Signup Bonus <span class="transaction-amount positive">+ ₹20.00</span></div>
+                    <div style="font-size: 12px; color: #777;">Today</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="section" id="services-section" style="display: none;">
+            <div class="tab-container">
+                <div class="tab active" data-tab="recharge">Recharge</div>
+                <div class="tab" data-tab="withdraw">Withdraw</div>
+                <div class="tab" data-tab="referral">Refer & Earn</div>
+            </div>
             
-            <!-- Wallet Section -->
-            <div class="feature-card">
-                <h3>Wallet Balance</h3>
-                <p style="font-size: 24px; font-weight: bold;">₹<span id="wallet-balance">0.00</span></p>
-                <button onclick="showAddMoney()">Add Money</button>
+            <!-- Recharge Tab -->
+            <div class="tab-content active" id="recharge-tab">
+                <div class="form-group">
+                    <label for="recharge-mobile">Mobile Number</label>
+                    <input type="tel" id="recharge-mobile" placeholder="Enter mobile number" maxlength="10">
+                </div>
+                <div class="form-group">
+                    <label for="operator">Operator</label>
+                    <select id="operator">
+                        <option value="">Select Operator</option>
+                        <option value="jio">Jio</option>
+                        <option value="airtel">Airtel</option>
+                        <option value="vi">Vi</option>
+                        <option value="bsnl">BSNL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="recharge-amount">Amount (₹)</label>
+                    <input type="number" id="recharge-amount" placeholder="Enter amount">
+                </div>
+                <button class="btn" id="recharge-btn">Proceed to Recharge</button>
             </div>
             
-            <!-- Features -->
-            <div class="features">
-                <div class="feature-card" onclick="showMobileRecharge()">
-                    <h3>Mobile Recharge</h3>
-                    <p>Recharge your prepaid mobile</p>
+            <!-- Withdraw Tab -->
+            <div class="tab-content" id="withdraw-tab">
+                <div class="form-group">
+                    <label for="withdraw-amount">Amount (₹)</label>
+                    <input type="number" id="withdraw-amount" placeholder="Enter amount to withdraw">
                 </div>
-                
-                <div class="feature-card" onclick="showWithdraw()">
-                    <h3>Withdraw Money</h3>
-                    <p>Transfer to UPI/Bank Account</p>
+                <div class="form-group">
+                    <label for="upi-id">UPI ID</label>
+                    <input type="text" id="upi-id" placeholder="Enter your UPI ID">
                 </div>
-                
-                <div class="feature-card" onclick="showReferral()">
-                    <h3>Refer & Earn</h3>
-                    <p>Give number and earn real money</p>
+                <button class="btn" id="withdraw-btn">Withdraw Money</button>
+                <p style="font-size: 12px; color: #777; text-align: center;">Minimum withdrawal amount: ₹1</p>
+            </div>
+            
+            <!-- Referral Tab -->
+            <div class="tab-content" id="referral-tab">
+                <div class="referral-box">
+                    <div style="text-align: center; margin-bottom: 10px;">Invite friends and earn ₹10 for each successful referral!</div>
+                    <div>Your Referral Code:</div>
+                    <div class="referral-code" id="referral-code">MOBPAY123</div>
+                    <div>Or share your link:</div>
+                    <input type="text" id="referral-link" value="https://mobilepay.com/ref/MOBPAY123" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+                    <button class="btn btn-secondary" style="margin-top: 10px;" onclick="copyReferralLink()">Copy Link</button>
+                </div>
+                <div class="section-title">Your Referrals</div>
+                <div id="referrals-list">
+                    <div class="transaction-item">
+                        <div>Rahul Kumar <span class="transaction-amount positive">+ ₹10.00</span></div>
+                        <div style="font-size: 12px; color: #777;">Completed recharge</div>
+                    </div>
+                    <div class="transaction-item">
+                        <div>Priya Sharma <span class="transaction-amount">₹0.00</span></div>
+                        <div style="font-size: 12px; color: #777;">Pending activation</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Mobile Recharge Form -->
-        <div id="mobile-recharge" class="auth-form hidden">
-            <h2>Mobile Recharge</h2>
-            <div class="form-group">
-                <label for="recharge-number">Mobile Number</label>
-                <input type="tel" id="recharge-number" placeholder="Enter mobile number">
-            </div>
-            <div class="form-group">
-                <label for="recharge-amount">Amount (₹)</label>
-                <input type="number" id="recharge-amount" placeholder="Enter amount">
-            </div>
-            <div class="form-group">
-                <label for="recharge-operator">Operator</label>
-                <select id="recharge-operator" class="form-control">
-                    <option value="">Select Operator</option>
-                    <option value="airtel">Airtel</option>
-                    <option value="jio">Jio</option>
-                    <option value="vi">Vi</option>
-                    <option value="bsnl">BSNL</option>
-                </select>
-            </div>
-            <button onclick="doRecharge()">Recharge Now</button>
-            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Cancel</button>
-        </div>
-        
-        <!-- Withdraw Money Form -->
-        <div id="withdraw-money" class="auth-form hidden">
-            <h2>Withdraw Money</h2>
-            <div class="form-group">
-                <label for="withdraw-amount">Amount (₹)</label>
-                <input type="number" id="withdraw-amount" placeholder="Enter amount">
-            </div>
-            <div class="form-group">
-                <label for="upi-id">UPI ID</label>
-                <input type="text" id="upi-id" placeholder="Enter UPI ID (e.g., name@upi)">
-            </div>
-            <button onclick="doWithdraw()">Withdraw</button>
-            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Cancel</button>
-        </div>
-        
-        <!-- Refer & Earn Section -->
-        <div id="refer-earn" class="auth-form hidden">
-            <h2>Refer & Earn</h2>
-            <p>Share your referral link and earn ₹50 for every friend who joins and adds money!</p>
-            <div class="form-group">
-                <label for="referral-link">Your Referral Link</label>
-                <input type="text" id="referral-link" value="https://moneyplus.com/ref/username123" readonly>
-            </div>
-            <button onclick="copyReferralLink()">Copy Link</button>
-            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Back to Dashboard</button>
-        </div>
-        
-        <!-- Add Money Section -->
-        <div id="add-money" class="auth-form hidden">
-            <h2>Add Money to Wallet</h2>
-            <div class="form-group">
-                <label for="add-amount">Amount (₹)</label>
-                <input type="number" id="add-amount" placeholder="Enter amount">
-            </div>
-            <div class="form-group">
-                <label for="payment-method">Payment Method</label>
-                <select id="payment-method" class="form-control">
-                    <option value="upi">UPI</option>
-                    <option value="card">Credit/Debit Card</option>
-                    <option value="netbanking">Net Banking</option>
-                </select>
-            </div>
-            <button onclick="doAddMoney()">Add Money</button>
-            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Cancel</button>
         </div>
     </div>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 MoneyPlus. All rights reserved.</p>
-        </div>
-    </footer>
-    
+
     <script>
-        // Store user data temporarily (in a real app, this would be server-side)
-        let userData = {
-            phone: '',
-            walletBalance: 0
-        };
+        // DOM Elements
+        const authSection = document.getElementById('auth-section');
+        const walletSection = document.getElementById('wallet-section');
+        const servicesSection = document.getElementById('services-section');
+        const sendOtpBtn = document.getElementById('send-otp-btn');
+        const otpContainer = document.getElementById('otp-container');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const mobileInput = document.getElementById('mobile');
+        const otpInput = document.getElementById('otp');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
         
-        // Function to send OTP
-        function sendOTP() {
-            const phone = document.getElementById('phone').value;
-            
-            if (phone.length !== 10 || isNaN(phone)) {
+        // Tabs functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(${tab.dataset.tab}-tab).classList.add('active');
+            });
+        });
+        
+        // Send OTP
+        sendOtpBtn.addEventListener('click', () => {
+            const mobile = mobileInput.value;
+            if (mobile.length !== 10 || isNaN(mobile)) {
                 alert('Please enter a valid 10-digit mobile number');
                 return;
             }
             
-            userData.phone = phone;
-            
-            // Show last 2 digits of phone number
-            document.getElementById('last-digits').textContent = phone.slice(-2);
-            
-            // Hide phone form, show OTP form
-            document.getElementById('phone-form').classList.add('hidden');
-            document.getElementById('otp-form').classList.remove('hidden');
-            
-            // In a real app, you would send OTP to the phone number via SMS
-            alert('OTP sent to +91 ' + phone + ' (In demo: 123456)');
-        }
+            // Simulate sending OTP
+            sendOtpBtn.textContent = 'Sending...';
+            setTimeout(() => {
+                sendOtpBtn.textContent = 'OTP Sent';
+                otpContainer.style.display = 'block';
+                // In a real app, you would send OTP to the mobile number
+            }, 1500);
+        });
         
-        // Function to verify OTP
-        function verifyOTP() {
-            const otp = document.getElementById('otp').value;
-            
+        // Verify OTP
+        verifyOtpBtn.addEventListener('click', () => {
+            const otp = otpInput.value;
             if (otp.length !== 6 || isNaN(otp)) {
                 alert('Please enter a valid 6-digit OTP');
                 return;
             }
             
-            // In a real app, you would verify OTP with server
-            // For demo, we'll accept any 6-digit number
-            alert('OTP verified successfully!');
+            // Simulate OTP verification
+            verifyOtpBtn.textContent = 'Verifying...';
+            setTimeout(() => {
+                verifyOtpBtn.textContent = 'Verified!';
+                
+                // Hide auth section, show wallet and services
+                setTimeout(() => {
+                    authSection.style.display = 'none';
+                    walletSection.style.display = 'block';
+                    servicesSection.style.display = 'block';
+                    
+                    // Set mobile number in recharge form
+                    document.getElementById('recharge-mobile').value = mobileInput.value;
+                }, 500);
+            }, 1500);
+        });
+        
+        // Recharge button
+        document.getElementById('recharge-btn').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('recharge-amount').value);
+            const operator = document.getElementById('operator').value;
+            const mobile = document.getElementById('recharge-mobile').value;
             
-            // Hide auth container, show dashboard
-            document.getElementById('auth-container').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
-            
-            // Set user name
-            document.getElementById('user-name').textContent = 'User ' + userData.phone;
-        }
-        
-        // Function to go back to phone number entry
-        function backToPhone() {
-            document.getElementById('phone-form').classList.remove('hidden');
-            document.getElementById('otp-form').classList.add('hidden');
-        }
-        
-        // Function to show mobile recharge form
-        function showMobileRecharge() {
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('mobile-recharge').classList.remove('hidden');
-        }
-        
-        // Function to show withdraw money form
-        function showWithdraw() {
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('withdraw-money').classList.remove('hidden');
-        }
-        
-        // Function to show referral section
-        function showReferral() {
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('refer-earn').classList.remove('hidden');
-        }
-        
-        // Function to show add money form
-        function showAddMoney() {
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('add-money').classList.remove('hidden');
-        }
-        
-        // Function to go back to dashboard
-        function backToDashboard() {
-            // Hide all forms
-            document.querySelectorAll('.auth-form').forEach(form => {
-                form.classList.add('hidden');
-            });
-            
-            // Show dashboard
-            document.getElementById('dashboard').classList.remove('hidden');
-        }
-        
-        // Function to perform mobile recharge
-        function doRecharge() {
-            const number = document.getElementById('recharge-number').value;
-            const amount = document.getElementById('recharge-amount').value;
-            const operator = document.getElementById('recharge-operator').value;
-            
-            if (!number || !amount || !operator) {
-                alert('Please fill all fields');
+            if (!mobile || mobile.length !== 10) {
+                alert('Please enter a valid mobile number');
                 return;
             }
             
-            if (amount > userData.walletBalance) {
-                alert('Insufficient wallet balance');
+            if (!operator) {
+                alert('Please select an operator');
                 return;
             }
             
-            // Deduct amount from wallet
-            userData.walletBalance -= parseFloat(amount);
-            updateWalletBalance();
+            if (!amount || amount < 10) {
+                alert('Please enter a valid amount (minimum ₹10)');
+                return;
+            }
             
-            alert(Success! ₹${amount} recharge done for ${number} (${operator}));
-            backToDashboard();
-        }
+            alert(Recharge of ₹${amount} for ${mobile} (${operator}) will be processed);
+            // In real app, you would process payment and recharge here
+        });
         
-        // Function to withdraw money
-        function doWithdraw() {
-            const amount = document.getElementById('withdraw-amount').value;
+        // Withdraw button
+        document.getElementById('withdraw-btn').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('withdraw-amount').value);
             const upi = document.getElementById('upi-id').value;
             
-            if (!amount || !upi) {
-                alert('Please fill all fields');
+            if (!amount || amount < 1) {
+                alert('Minimum withdrawal amount is ₹1');
                 return;
             }
             
-            if (amount > userData.walletBalance) {
+            const walletAmount = parseFloat(document.getElementById('wallet-amount').textContent);
+            if (amount > walletAmount) {
                 alert('Insufficient wallet balance');
                 return;
             }
             
-            if (!upi.includes('@')) {
+            if (!upi || !upi.includes('@')) {
                 alert('Please enter a valid UPI ID');
                 return;
             }
             
-            // Deduct amount from wallet
-            userData.walletBalance -= parseFloat(amount);
-            updateWalletBalance();
+            alert(Withdrawal request of ₹${amount} to ${upi} has been submitted. It will be processed within 24 hours.);
+            // In real app, you would process withdrawal here
             
-            alert(Success! ₹${amount} withdrawal initiated to ${upi}. It may take 1-2 hours to process.);
-            backToDashboard();
-        }
+            // Update wallet balance (for demo purposes)
+            const newBalance = walletAmount - amount;
+            document.getElementById('wallet-amount').textContent = newBalance.toFixed(2);
+            
+            // Add transaction to history
+            const transactionList = document.getElementById('transactions-list');
+            const newTransaction = document.createElement('div');
+            newTransaction.className = 'transaction-item';
+            newTransaction.innerHTML = `
+                <div>Withdrawal to UPI <span class="transaction-amount negative">- ₹${amount.toFixed(2)}</span></div>
+                <div style="font-size: 12px; color: #777;">Processing</div>
+            `;
+            transactionList.insertBefore(newTransaction, transactionList.firstChild);
+        });
         
-        // Function to add money to wallet
-        function doAddMoney() {
-            const amount = document.getElementById('add-amount').value;
-            const method = document.getElementById('payment-method').value;
-            
-            if (!amount || amount <= 0) {
-                alert('Please enter a valid amount');
-                return;
-            }
-            
-            // In a real app, you would process payment via payment gateway
-            // For demo, we'll just add to wallet balance
-            userData.walletBalance += parseFloat(amount);
-            updateWalletBalance();
-            
-            alert(Success! ₹${amount} added to your wallet via ${method}.);
-            backToDashboard();
-        }
-        
-        // Function to copy referral link
+        // Copy referral link
         function copyReferralLink() {
             const link = document.getElementById('referral-link');
             link.select();
             document.execCommand('copy');
             alert('Referral link copied to clipboard!');
-        }
-        
-        // Function to update wallet balance display
-        function updateWalletBalance() {
-            document.getElementById('wallet-balance').textContent = userData.walletBalance.toFixed(2);
         }
     </script>
 </body>
