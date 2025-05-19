@@ -1,178 +1,435 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tapan Virtual Reality</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>MoneyPlus - Digital Wallet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .auth-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 30px auto;
+        }
+        
+        .auth-form h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            color: #4CAF50;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .otp-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <div class="theme-picker">
-        <input type="color" id="theme" title="select color theme">
-    </div>
     <header>
-        <div>
-            <a href="./index.html"><span class="logo-text"><span class="blue-span"></span></span></a>
-        </div>
-        <div class="header-links">
-            <div class="cancel-icon">
-                <i class="fa-solid fa-xmark" style="font-size: larger;"></i>
-            </div>
-            <div>
-                <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./index.html#about">About</a></li>
-                    <li><a href="./index.html">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <a href="/" target="_blank"><button class="fa-brands fa-web"> </button></a>
-            </div>
-        </div>
-        <div class="menu-icon">
-            <i class="fa-solid fa-bars"></i>
+        <div class="container">
+            <h1>MoneyPlus</h1>
+            <p>Your Digital Wallet Solution</p>
         </div>
     </header>
-    <main>
-        <section class="hero-section">
-            <div class="hero-text" data-aos="fade-up-right">
-                <h1>Welcome to,</h1>
-                <h1><span class="logo-text">"Tapan<span class="blue-span"> Virtual Reality"</span></span></h1>
-                <p class="grey-span">
-                    <h3> I'm <span class="logo-text"><span class="blue-span">Tapan Kumar Das </span>
-                        <span class="multi-text blue-span"></span>
-                        <span class="blink"></span>
-                    </h3>
+    
+    <div class="container">
+        <!-- Signup/Login Form -->
+        <div id="auth-container" class="auth-form">
+            <h2>Sign Up / Login</h2>
+            <div id="phone-form">
+                <div class="form-group">
+                    <label for="phone">Mobile Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your mobile number" maxlength="10">
+                </div>
+                <button onclick="sendOTP()">Send OTP</button>
+            </div>
+            
+            <div id="otp-form" class="hidden">
+                <div class="form-group">
+                    <label for="otp">Enter OTP</label>
+                    <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6">
+                    <p class="otp-info">OTP sent to +91 XXXXXXX<span id="last-digits"></span></p>
+                </div>
+                <button onclick="verifyOTP()">Verify OTP</button>
+                <p style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="backToPhone()">Change Number</a>
                 </p>
-                <div class="social-icon">
-                    <a href="https://www.instagram.com/tapanvirtulreality?igsh=ZDBuOWdraHJ6NGVy" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/tapan.tapankumar.315428?mibextid=LQQJ4d" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://whatsapp.com/channel/0029VazpR3Q1noz3iXJT4w3F"></i></a>
-                </div>
-                <a href="#about"><button class="btn">Read More</button></a>
             </div>
-            <div class="hero-img" data-aos="fade-down-left">
-                <video width="400" height="315" autoplay muted loop>
-                    <source src="influencer.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+        </div>
+        
+        <!-- Main Dashboard (hidden initially) -->
+        <div id="dashboard" class="hidden">
+            <h2>Welcome, <span id="user-name">User</span>!</h2>
+            
+            <!-- Wallet Section -->
+            <div class="feature-card">
+                <h3>Wallet Balance</h3>
+                <p style="font-size: 24px; font-weight: bold;">₹<span id="wallet-balance">0.00</span></p>
+                <button onclick="showAddMoney()">Add Money</button>
             </div>
-        </section>
-        <section class="service-section">
-            <h1>My <span class="blue-span heading">Services</span></h1>
-            <div class="service-cards-container">
-                <div class="service-card" data-aos="fade-up">
-                    <i class="fa-solid fa-earth-asia"></i>
-                    <h4> </h4>
-                    <p> Using Technology to digitalize you.</p>
-                    <a href="#">view </a>
+            
+            <!-- Features -->
+            <div class="features">
+                <div class="feature-card" onclick="showMobileRecharge()">
+                    <h3>Mobile Recharge</h3>
+                    <p>Recharge your prepaid mobile</p>
                 </div>
-                <div class="service-card" data-aos="fade-up">
-                    <i class="fa-solid fa-shapes"></i>
-                    <h4>Entatairner</h4>
-                    <p>I Design - website , app, webapp</p>
-                    <a href="#">view </a>
+                
+                <div class="feature-card" onclick="showWithdraw()">
+                    <h3>Withdraw Money</h3>
+                    <p>Transfer to UPI/Bank Account</p>
                 </div>
-                <div class="service-card" data-aos="fade-up">
-                    <i class="fa-solid fa-icons"></i>
-                    <h4></h4>
-                    <p> The use of computer modeling and simulation that enables a person to interact with an artificial three-dimensional (3-D) visual or other sensory environment</p>
-                    <a href="#">view</a>
+                
+                <div class="feature-card" onclick="showReferral()">
+                    <h3>Refer & Earn</h3>
+                    <p>Give number and earn real money</p>
                 </div>
             </div>
-        </section>
-        <section class="about-section" id="about">
-            <div class="hero-img" data-aos="fade-down-left">
-                <div class="slider">
-                    <div class="slides">
-                        <!-- Radio buttons for slider navigation -->
-                       
-                        
-                        <!-- Slide images -->
-                        
-                      <video width="450" height="315" controls>
-    <source src="mainv.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
-
-                        <div class="slide">
-                            <video width="400" height="315" autoplay muted loop>
-                    <source src="influencer.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                        </div>
-                     <div class="slide">
-                            <video width="400" height="315" autoplay muted loop>
-                    <source src="2ndvideo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                        </div>
-                     <div class="slide">
-                            <video width="400" height="315" autoplay muted loop>
-                    <source src="price.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                        </div>
-                        <div class="slide">
-                            <video width="400" height="315" autoplay muted loop>
-                    <source src="last.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                        </div>
-                        
-                        
-                        <!-- Navigation auto buttons -->
-                        <div class="navigation-auto">
-                            <div class="auto-btn1"></div>
-                            <div class="auto-btn2"></div>
-                            <div class="auto-btn3"></div>
-                            <div class="auto-btn4"></div>
-                            <div class="auto-btn5"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Manual navigation -->
-                    <div class="navigation-manual">
-                        <label for="radio1" class="manual-btn"></label>
-                        <label for="radio2" class="manual-btn"></label>
-                        <label for="radio3" class="manual-btn"></label>
-                        <label for="radio4" class="manual-btn"></label>
-                        <label for="radio5" class="manual-btn"></label>
-                    </div>
-                </div>
+        </div>
+        
+        <!-- Mobile Recharge Form -->
+        <div id="mobile-recharge" class="auth-form hidden">
+            <h2>Mobile Recharge</h2>
+            <div class="form-group">
+                <label for="recharge-number">Mobile Number</label>
+                <input type="tel" id="recharge-number" placeholder="Enter mobile number">
             </div>
-            <div data-aos="fade-down-left">
-                <ol>
-                    <li>
-                        <h1>I'm a <span class="blue-span heading"> Digital Creator</span> <span class="blue-span heading"></span></h1>
-                    </li>
-                    <li><strong>Place : </strong>Naikudi,Basta,Balasore</li>
-                    <li><strong>Email : </strong><a href="mailto:tapantapanki10@gmail.com">tapantapanki10@gmail.com</a></li>
-                    <li><strong>Phone : </strong><a href="tel:+91 9827058262">+91 9827058262</a></li>
-                    <li><a href="https://wa.me/qr/J2NO2JRL67SQD1" target="_blank"><button class="btn">BOOK NOW</button></a></li>
-                </ol>
+            <div class="form-group">
+                <label for="recharge-amount">Amount (₹)</label>
+                <input type="number" id="recharge-amount" placeholder="Enter amount">
             </div>
-        </section>
-        <section class="contact-section" id="contact">
-           <a href="https://whatsapp.com/channel/0029VazpR3Q1noz3iXJT4w3F"> <h1 data-aos="zoom-in-up"> <span class="blue-span heading">Click -> You can Join our Community </span></h1></a>
-            <div class="slide">
-                <img src="QRR.jpg" alt="QR">
+            <div class="form-group">
+                <label for="recharge-operator">Operator</label>
+                <select id="recharge-operator" class="form-control">
+                    <option value="">Select Operator</option>
+                    <option value="airtel">Airtel</option>
+                    <option value="jio">Jio</option>
+                    <option value="vi">Vi</option>
+                    <option value="bsnl">BSNL</option>
+                </select>
             </div>
-                    
-        </section>
-    </main>
+            <button onclick="doRecharge()">Recharge Now</button>
+            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Cancel</button>
+        </div>
+        
+        <!-- Withdraw Money Form -->
+        <div id="withdraw-money" class="auth-form hidden">
+            <h2>Withdraw Money</h2>
+            <div class="form-group">
+                <label for="withdraw-amount">Amount (₹)</label>
+                <input type="number" id="withdraw-amount" placeholder="Enter amount">
+            </div>
+            <div class="form-group">
+                <label for="upi-id">UPI ID</label>
+                <input type="text" id="upi-id" placeholder="Enter UPI ID (e.g., name@upi)">
+            </div>
+            <button onclick="doWithdraw()">Withdraw</button>
+            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Cancel</button>
+        </div>
+        
+        <!-- Refer & Earn Section -->
+        <div id="refer-earn" class="auth-form hidden">
+            <h2>Refer & Earn</h2>
+            <p>Share your referral link and earn ₹50 for every friend who joins and adds money!</p>
+            <div class="form-group">
+                <label for="referral-link">Your Referral Link</label>
+                <input type="text" id="referral-link" value="https://moneyplus.com/ref/username123" readonly>
+            </div>
+            <button onclick="copyReferralLink()">Copy Link</button>
+            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Back to Dashboard</button>
+        </div>
+        
+        <!-- Add Money Section -->
+        <div id="add-money" class="auth-form hidden">
+            <h2>Add Money to Wallet</h2>
+            <div class="form-group">
+                <label for="add-amount">Amount (₹)</label>
+                <input type="number" id="add-amount" placeholder="Enter amount">
+            </div>
+            <div class="form-group">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" class="form-control">
+                    <option value="upi">UPI</option>
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="netbanking">Net Banking</option>
+                </select>
+            </div>
+            <button onclick="doAddMoney()">Add Money</button>
+            <button onclick="backToDashboard()" style="background-color: #f44336; margin-top: 10px;">Cancel</button>
+        </div>
+    </div>
+    
     <footer>
-        <p>&copy; 2024-25<a href="#" target="_blank"></a> - AllRights Reserved.(TAPAN KUMAR DAS)</p>
+        <div class="container">
+            <p>&copy; 2023 MoneyPlus. All rights reserved.</p>
+        </div>
     </footer>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    
     <script>
-      AOS.init();
+        // Store user data temporarily (in a real app, this would be server-side)
+        let userData = {
+            phone: '',
+            walletBalance: 0
+        };
+        
+        // Function to send OTP
+        function sendOTP() {
+            const phone = document.getElementById('phone').value;
+            
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return;
+            }
+            
+            userData.phone = phone;
+            
+            // Show last 2 digits of phone number
+            document.getElementById('last-digits').textContent = phone.slice(-2);
+            
+            // Hide phone form, show OTP form
+            document.getElementById('phone-form').classList.add('hidden');
+            document.getElementById('otp-form').classList.remove('hidden');
+            
+            // In a real app, you would send OTP to the phone number via SMS
+            alert('OTP sent to +91 ' + phone + ' (In demo: 123456)');
+        }
+        
+        // Function to verify OTP
+        function verifyOTP() {
+            const otp = document.getElementById('otp').value;
+            
+            if (otp.length !== 6 || isNaN(otp)) {
+                alert('Please enter a valid 6-digit OTP');
+                return;
+            }
+            
+            // In a real app, you would verify OTP with server
+            // For demo, we'll accept any 6-digit number
+            alert('OTP verified successfully!');
+            
+            // Hide auth container, show dashboard
+            document.getElementById('auth-container').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            // Set user name
+            document.getElementById('user-name').textContent = 'User ' + userData.phone;
+        }
+        
+        // Function to go back to phone number entry
+        function backToPhone() {
+            document.getElementById('phone-form').classList.remove('hidden');
+            document.getElementById('otp-form').classList.add('hidden');
+        }
+        
+        // Function to show mobile recharge form
+        function showMobileRecharge() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('mobile-recharge').classList.remove('hidden');
+        }
+        
+        // Function to show withdraw money form
+        function showWithdraw() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('withdraw-money').classList.remove('hidden');
+        }
+        
+        // Function to show referral section
+        function showReferral() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('refer-earn').classList.remove('hidden');
+        }
+        
+        // Function to show add money form
+        function showAddMoney() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('add-money').classList.remove('hidden');
+        }
+        
+        // Function to go back to dashboard
+        function backToDashboard() {
+            // Hide all forms
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.add('hidden');
+            });
+            
+            // Show dashboard
+            document.getElementById('dashboard').classList.remove('hidden');
+        }
+        
+        // Function to perform mobile recharge
+        function doRecharge() {
+            const number = document.getElementById('recharge-number').value;
+            const amount = document.getElementById('recharge-amount').value;
+            const operator = document.getElementById('recharge-operator').value;
+            
+            if (!number || !amount || !operator) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            if (amount > userData.walletBalance) {
+                alert('Insufficient wallet balance');
+                return;
+            }
+            
+            // Deduct amount from wallet
+            userData.walletBalance -= parseFloat(amount);
+            updateWalletBalance();
+            
+            alert(Success! ₹${amount} recharge done for ${number} (${operator}));
+            backToDashboard();
+        }
+        
+        // Function to withdraw money
+        function doWithdraw() {
+            const amount = document.getElementById('withdraw-amount').value;
+            const upi = document.getElementById('upi-id').value;
+            
+            if (!amount || !upi) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            if (amount > userData.walletBalance) {
+                alert('Insufficient wallet balance');
+                return;
+            }
+            
+            if (!upi.includes('@')) {
+                alert('Please enter a valid UPI ID');
+                return;
+            }
+            
+            // Deduct amount from wallet
+            userData.walletBalance -= parseFloat(amount);
+            updateWalletBalance();
+            
+            alert(Success! ₹${amount} withdrawal initiated to ${upi}. It may take 1-2 hours to process.);
+            backToDashboard();
+        }
+        
+        // Function to add money to wallet
+        function doAddMoney() {
+            const amount = document.getElementById('add-amount').value;
+            const method = document.getElementById('payment-method').value;
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            // In a real app, you would process payment via payment gateway
+            // For demo, we'll just add to wallet balance
+            userData.walletBalance += parseFloat(amount);
+            updateWalletBalance();
+            
+            alert(Success! ₹${amount} added to your wallet via ${method}.);
+            backToDashboard();
+        }
+        
+        // Function to copy referral link
+        function copyReferralLink() {
+            const link = document.getElementById('referral-link');
+            link.select();
+            document.execCommand('copy');
+            alert('Referral link copied to clipboard!');
+        }
+        
+        // Function to update wallet balance display
+        function updateWalletBalance() {
+            document.getElementById('wallet-balance').textContent = userData.walletBalance.toFixed(2);
+        }
     </script>
 </body>
 </html>
