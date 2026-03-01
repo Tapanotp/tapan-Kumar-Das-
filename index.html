@@ -12,43 +12,46 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Orbitron', sans-serif;
-scroll-behavior:smooth;
 }
 
-body{
-background:#000;
-color:white;
+body,html{
+height:100%;
 overflow-x:hidden;
+color:white;
 }
 
-/* 3D Animated Background */
-body::before{
-content:"";
+/* Background Video */
+.video-bg{
 position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#00f7ff33 1px, transparent 1px);
-background-size:40px 40px;
-animation:moveBg 20s linear infinite;
-z-index:-1;
+right:0;
+bottom:0;
+min-width:100%;
+min-height:100%;
+z-index:-2;
+object-fit:cover;
 }
 
-@keyframes moveBg{
-0%{transform:translate(0,0);}
-100%{transform:translate(-200px,-200px);}
+/* Dark Overlay */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.65);
+z-index:-1;
 }
 
 /* Navbar */
 nav{
+position:fixed;
+top:0;
+width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:15px 40px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(15px);
-position:fixed;
-width:100%;
-top:0;
+background:rgba(0,0,0,0.6);
 z-index:1000;
 }
 
@@ -56,7 +59,7 @@ nav h1{
 color:#00f7ff;
 }
 
-/* Hero */
+/* Hero Section */
 .hero{
 height:100vh;
 display:flex;
@@ -67,22 +70,8 @@ text-align:center;
 padding:20px;
 }
 
-.hero img{
-width:300px;
-max-width:90%;
-border-radius:20px;
-margin-bottom:30px;
-box-shadow:0 0 40px #00f7ff;
-animation:floatImg 4s ease-in-out infinite;
-}
-
-@keyframes floatImg{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-}
-
 .hero h2{
-font-size:45px;
+font-size:50px;
 color:#00f7ff;
 text-shadow:0 0 25px #00f7ff;
 }
@@ -126,39 +115,43 @@ footer{
 text-align:center;
 padding:20px;
 background:black;
-margin-top:50px;
+}
+
+@media(max-width:768px){
+.hero h2{font-size:30px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ✅ Background Video -->
+<video autoplay muted loop class="video-bg">
+<source src="https://cdn.coverr.co/videos/coverr-man-using-vr-headset-5175/1080p.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
 <nav>
 <h1>Tapan VR</h1>
 </nav>
 
 <section class="hero">
-
-<!-- ✅ VR Image Added -->
-<img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620" alt="VR Gaming">
-
 <h2>Welcome to Tapan Virtual Reality</h2>
 <p>Experience next-level immersive VR Gaming & Entertainment like never before.</p>
-
 <button class="btn" onclick="sendWhatsApp()">Book Now</button>
-
 </section>
 
 <footer>
 © 2026 Tapan Virtual Reality | All Rights Reserved
 </footer>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session." class="whatsapp">💬</a>
+<!-- WhatsApp Button -->
+<a href="https://wa.me/919827058262?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session." class="whatsapp">💬</a>
 
 <script>
 function sendWhatsApp(){
-window.open("https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session.","_blank");
+window.open("https://wa.me/919827058262?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session.","_blank");
 }
 </script>
 
