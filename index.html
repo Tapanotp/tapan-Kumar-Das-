@@ -1,391 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MobilePay - Recharge & Earn Money</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            min-height: 100vh;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            border-radius: 8px 8px 0 0;
-            margin-bottom: 20px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #4CAF50;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-        }
-        .wallet-balance {
-            font-size: 28px;
-            text-align: center;
-            margin: 15px 0;
-            font-weight: bold;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .btn-secondary {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .otp-container {
-            display: none;
-        }
-        .tab-container {
-            display: flex;
-            margin-bottom: 15px;
-        }
-        .tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-            cursor: pointer;
-        }
-        .tab.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .referral-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .referral-code {
-            font-weight: bold;
-            font-size: 18px;
-            color: #4CAF50;
-            text-align: center;
-            margin: 10px 0;
-        }
-        .transaction-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .transaction-amount {
-            float: right;
-            font-weight: bold;
-        }
-        .positive {
-            color: #4CAF50;
-        }
-        .negative {
-            color: #f44336;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tapan Virtual Reality</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Orbitron',sans-serif;
+}
+
+body{
+background:#000;
+color:white;
+overflow:hidden;
+}
+
+/* Moving Background */
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+background:linear-gradient(135deg,#000428,#004e92);
+}
+
+/* Intro Screen */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+z-index:10;
+}
+
+#intro h1{
+font-size:32px;
+margin-bottom:20px;
+text-shadow:0 0 20px #00f2ff;
+animation:glow 2s infinite alternate;
+}
+
+.start-btn{
+padding:14px 40px;
+border:none;
+border-radius:50px;
+background:#00f2ff;
+color:black;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.start-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 25px #00f2ff;
+}
+
+/* Main App Content */
+#app{
+display:none;
+padding:80px 20px;
+text-align:center;
+}
+
+#app h2{
+font-size:28px;
+margin-bottom:20px;
+text-shadow:0 0 15px #00f2ff;
+}
+
+.card-container{
+display:flex;
+flex-direction:column;
+gap:20px;
+margin-top:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #00f2ff;
+}
+
+/* Animations */
+@keyframes glow{
+from{text-shadow:0 0 10px #00f2ff;}
+to{text-shadow:0 0 30px #00f2ff;}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">MobilePay</div>
-            <div>Recharge & Earn Money</div>
-        </header>
 
-        <!-- Login/Signup Section -->
-        <div class="section" id="auth-section">
-            <div class="section-title">Sign In / Register</div>
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" placeholder="Enter 10 digit mobile number" maxlength="10">
-            </div>
-            <button class="btn" id="send-otp-btn">Send OTP</button>
-            
-            <div class="otp-container" id="otp-container">
-                <div class="form-group">
-                    <label for="otp">Enter OTP</label>
-                    <input type="tel" id="otp" placeholder="Enter 6 digit OTP" maxlength="6">
-                </div>
-                <button class="btn" id="verify-otp-btn">Verify OTP</button>
-            </div>
-        </div>
+<div id="particles-js"></div>
 
-        <!-- Wallet Section (hidden initially) -->
-        <div class="section" id="wallet-section" style="display: none;">
-            <div class="section-title">My Wallet</div>
-            <div class="wallet-balance">
-                ₹ <span id="wallet-amount">20.00</span>
-            </div>
-            <div class="section-title">Recent Transactions</div>
-            <div id="transactions-list">
-                <div class="transaction-item">
-                    <div>Signup Bonus <span class="transaction-amount positive">+ ₹20.00</span></div>
-                    <div style="font-size: 12px; color: #777;">Today</div>
-                </div>
-            </div>
-        </div>
+<audio id="introSound" src="intro.mp3"></audio>
 
-        <!-- Services Section -->
-        <div class="section" id="services-section" style="display: none;">
-            <div class="tab-container">
-                <div class="tab active" data-tab="recharge">Recharge</div>
-                <div class="tab" data-tab="withdraw">Withdraw</div>
-                <div class="tab" data-tab="referral">Refer & Earn</div>
-            </div>
-            
-            <!-- Recharge Tab -->
-            <div class="tab-content active" id="recharge-tab">
-                <div class="form-group">
-                    <label for="recharge-mobile">Mobile Number</label>
-                    <input type="tel" id="recharge-mobile" placeholder="Enter mobile number" maxlength="10">
-                </div>
-                <div class="form-group">
-                    <label for="operator">Operator</label>
-                    <select id="operator">
-                        <option value="">Select Operator</option>
-                        <option value="jio">Jio</option>
-                        <option value="airtel">Airtel</option>
-                        <option value="vi">Vi</option>
-                        <option value="bsnl">BSNL</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="recharge-amount">Amount (₹)</label>
-                    <input type="number" id="recharge-amount" placeholder="Enter amount">
-                </div>
-                <button class="btn" id="recharge-btn">Proceed to Recharge</button>
-            </div>
-            
-            <!-- Withdraw Tab -->
-            <div class="tab-content" id="withdraw-tab">
-                <div class="form-group">
-                    <label for="withdraw-amount">Amount (₹)</label>
-                    <input type="number" id="withdraw-amount" placeholder="Enter amount to withdraw">
-                </div>
-                <div class="form-group">
-                    <label for="upi-id">UPI ID</label>
-                    <input type="text" id="upi-id" placeholder="Enter your UPI ID">
-                </div>
-                <button class="btn" id="withdraw-btn">Withdraw Money</button>
-                <p style="font-size: 12px; color: #777; text-align: center;">Minimum withdrawal amount: ₹1</p>
-            </div>
-            
-            <!-- Referral Tab -->
-            <div class="tab-content" id="referral-tab">
-                <div class="referral-box">
-                    <div style="text-align: center; margin-bottom: 10px;">Invite friends and earn ₹10 for each successful referral!</div>
-                    <div>Your Referral Code:</div>
-                    <div class="referral-code" id="referral-code">MOBPAY123</div>
-                    <div>Or share your link:</div>
-                    <input type="text" id="referral-link" value="https://mobilepay.com/ref/MOBPAY123" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
-                    <button class="btn btn-secondary" style="margin-top: 10px;" onclick="copyReferralLink()">Copy Link</button>
-                </div>
-                <div class="section-title">Your Referrals</div>
-                <div id="referrals-list">
-                    <div class="transaction-item">
-                        <div>Rahul Kumar <span class="transaction-amount positive">+ ₹10.00</span></div>
-                        <div style="font-size: 12px; color: #777;">Completed recharge</div>
-                    </div>
-                    <div class="transaction-item">
-                        <div>Priya Sharma <span class="transaction-amount">₹0.00</span></div>
-                        <div style="font-size: 12px; color: #777;">Pending activation</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Intro Screen -->
+<div id="intro">
+<h1>Tapan Virtual Reality</h1>
+<button class="start-btn" onclick="startApp()">PRESS START</button>
+</div>
 
-    <script>
-        // DOM Elements
-        const authSection = document.getElementById('auth-section');
-        const walletSection = document.getElementById('wallet-section');
-        const servicesSection = document.getElementById('services-section');
-        const sendOtpBtn = document.getElementById('send-otp-btn');
-        const otpContainer = document.getElementById('otp-container');
-        const verifyOtpBtn = document.getElementById('verify-otp-btn');
-        const mobileInput = document.getElementById('mobile');
-        const otpInput = document.getElementById('otp');
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        // Tabs functionality
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                document.getElementById(${tab.dataset.tab}-tab).classList.add('active');
-            });
-        });
-        
-        // Send OTP
-        sendOtpBtn.addEventListener('click', () => {
-            const mobile = mobileInput.value;
-            if (mobile.length !== 10 || isNaN(mobile)) {
-                alert('Please enter a valid 10-digit mobile number');
-                return;
-            }
-            
-            // Simulate sending OTP
-            sendOtpBtn.textContent = 'Sending...';
-            setTimeout(() => {
-                sendOtpBtn.textContent = 'OTP Sent';
-                otpContainer.style.display = 'block';
-                // In a real app, you would send OTP to the mobile number
-            }, 1500);
-        });
-        
-        // Verify OTP
-        verifyOtpBtn.addEventListener('click', () => {
-            const otp = otpInput.value;
-            if (otp.length !== 6 || isNaN(otp)) {
-                alert('Please enter a valid 6-digit OTP');
-                return;
-            }
-            
-            // Simulate OTP verification
-            verifyOtpBtn.textContent = 'Verifying...';
-            setTimeout(() => {
-                verifyOtpBtn.textContent = 'Verified!';
-                
-                // Hide auth section, show wallet and services
-                setTimeout(() => {
-                    authSection.style.display = 'none';
-                    walletSection.style.display = 'block';
-                    servicesSection.style.display = 'block';
-                    
-                    // Set mobile number in recharge form
-                    document.getElementById('recharge-mobile').value = mobileInput.value;
-                }, 500);
-            }, 1500);
-        });
-        
-        // Recharge button
-        document.getElementById('recharge-btn').addEventListener('click', () => {
-            const amount = parseFloat(document.getElementById('recharge-amount').value);
-            const operator = document.getElementById('operator').value;
-            const mobile = document.getElementById('recharge-mobile').value;
-            
-            if (!mobile || mobile.length !== 10) {
-                alert('Please enter a valid mobile number');
-                return;
-            }
-            
-            if (!operator) {
-                alert('Please select an operator');
-                return;
-            }
-            
-            if (!amount || amount < 10) {
-                alert('Please enter a valid amount (minimum ₹10)');
-                return;
-            }
-            
-            alert(Recharge of ₹${amount} for ${mobile} (${operator}) will be processed);
-            // In real app, you would process payment and recharge here
-        });
-        
-        // Withdraw button
-        document.getElementById('withdraw-btn').addEventListener('click', () => {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const upi = document.getElementById('upi-id').value;
-            
-            if (!amount || amount < 1) {
-                alert('Minimum withdrawal amount is ₹1');
-                return;
-            }
-            
-            const walletAmount = parseFloat(document.getElementById('wallet-amount').textContent);
-            if (amount > walletAmount) {
-                alert('Insufficient wallet balance');
-                return;
-            }
-            
-            if (!upi || !upi.includes('@')) {
-                alert('Please enter a valid UPI ID');
-                return;
-            }
-            
-            alert(Withdrawal request of ₹${amount} to ${upi} has been submitted. It will be processed within 24 hours.);
-            // In real app, you would process withdrawal here
-            
-            // Update wallet balance (for demo purposes)
-            const newBalance = walletAmount - amount;
-            document.getElementById('wallet-amount').textContent = newBalance.toFixed(2);
-            
-            // Add transaction to history
-            const transactionList = document.getElementById('transactions-list');
-            const newTransaction = document.createElement('div');
-            newTransaction.className = 'transaction-item';
-            newTransaction.innerHTML = `
-                <div>Withdrawal to UPI <span class="transaction-amount negative">- ₹${amount.toFixed(2)}</span></div>
-                <div style="font-size: 12px; color: #777;">Processing</div>
-            `;
-            transactionList.insertBefore(newTransaction, transactionList.firstChild);
-        });
-        
-        // Copy referral link
-        function copyReferralLink() {
-            const link = document.getElementById('referral-link');
-            link.select();
-            document.execCommand('copy');
-            alert('Referral link copied to clipboard!');
-        }
-    </script>
+<!-- App Content -->
+<div id="app">
+<h2>Welcome Gamer 🎮</h2>
+<p>Step Into The Virtual Universe</p>
+
+<div class="card-container">
+<div class="card">
+<h3>🎮 VR Gaming</h3>
+<p>High quality immersive gameplay.</p>
+</div>
+
+<div class="card">
+<h3>🌌 360° Tours</h3>
+<p>Interactive virtual world experience.</p>
+</div>
+
+<div class="card">
+<h3>🚀 Metaverse Events</h3>
+<p>Next level digital meetups & concerts.</p>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+particlesJS("particles-js", {
+"particles": {
+"number": {"value": 70},
+"size": {"value": 3},
+"move": {"speed": 2},
+"line_linked": {"enable": true},
+"color": {"value": "#00f2ff"}
+}
+});
+
+function startApp(){
+document.getElementById("introSound").play();
+document.getElementById("intro").style.display="none";
+document.getElementById("app").style.display="block";
+document.body.style.overflow="auto";
+}
+</script>
+
 </body>
 </html>
