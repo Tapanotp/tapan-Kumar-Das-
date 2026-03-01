@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel - Tapan VR</title>
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+padding:40px;
+}
+input, textarea{
+width:90%;
+max-width:500px;
+padding:10px;
+margin:10px;
+border-radius:8px;
+border:none;
+}
+button{
+padding:10px 25px;
+background:#00f7ff;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+.login-box{
+margin-bottom:30px;
+}
+</style>
+</head>
+<body>
+
+<h1>Admin Panel - Tapan VR</h1>
+
+<div id="loginSection">
+<h2>Login</h2>
+<input type="password" id="adminPass" placeholder="Enter Admin Password">
+<br>
+<button onclick="login()">Login</button>
+</div>
+
+<div id="adminSection" style="display:none;">
+<h2>Edit Website Content</h2>
+
+<input type="text" id="heroTitle" placeholder="Hero Title"><br>
+<textarea id="aboutText" rows="4" placeholder="About Text"></textarea><br>
+<input type="text" id="price1" placeholder="Basic Price"><br>
+<input type="text" id="price2" placeholder="Standard Price"><br>
+<input type="text" id="price3" placeholder="Premium Price"><br>
+
+<button onclick="saveData()">Save Changes</button>
+</div>
+
+<script>
+function login(){
+let pass = document.getElementById("adminPass").value;
+if(pass === "tapan123"){
+document.getElementById("loginSection").style.display="none";
+document.getElementById("adminSection").style.display="block";
+}else{
+alert("Wrong Password!");
+}
+}
+
+function saveData(){
+localStorage.setItem("heroTitle", document.getElementById("heroTitle").value);
+localStorage.setItem("aboutText", document.getElementById("aboutText").value);
+localStorage.setItem("price1", document.getElementById("price1").value);
+localStorage.setItem("price2", document.getElementById("price2").value);
+localStorage.setItem("price3", document.getElementById("price3").value);
+
+alert("Saved Successfully!");
+}
+</script>
+
+</body>
+</html>
