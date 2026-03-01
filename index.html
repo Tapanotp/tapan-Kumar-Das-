@@ -56,23 +56,6 @@ nav h1{
 color:#00f7ff;
 }
 
-nav ul{
-display:flex;
-gap:20px;
-list-style:none;
-}
-
-nav ul li a{
-color:white;
-text-decoration:none;
-font-size:14px;
-transition:0.3s;
-}
-
-nav ul li a:hover{
-color:#00f7ff;
-}
-
 /* Hero */
 .hero{
 height:100vh;
@@ -84,16 +67,24 @@ text-align:center;
 padding:20px;
 }
 
-.hero h2{
-font-size:55px;
-color:#00f7ff;
-text-shadow:0 0 25px #00f7ff;
-animation:float 3s ease-in-out infinite;
+.hero img{
+width:300px;
+max-width:90%;
+border-radius:20px;
+margin-bottom:30px;
+box-shadow:0 0 40px #00f7ff;
+animation:floatImg 4s ease-in-out infinite;
 }
 
-@keyframes float{
+@keyframes floatImg{
 0%,100%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
+50%{transform:translateY(-20px);}
+}
+
+.hero h2{
+font-size:45px;
+color:#00f7ff;
+text-shadow:0 0 25px #00f7ff;
 }
 
 .hero p{
@@ -117,45 +108,6 @@ transition:0.4s;
 transform:scale(1.1);
 }
 
-/* Services */
-section{
-padding:100px 20px;
-text-align:center;
-}
-
-.section-title{
-font-size:35px;
-margin-bottom:40px;
-color:#00f7ff;
-}
-
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-padding:30px;
-width:280px;
-border-radius:20px;
-backdrop-filter:blur(15px);
-transition:0.5s;
-transform-style:preserve-3d;
-}
-
-.card:hover{
-transform:rotateY(10deg) rotateX(10deg);
-box-shadow:0 0 30px #00f7ff;
-}
-
-/* Contact */
-.contact-box{
-margin-top:30px;
-}
-
 /* WhatsApp Button */
 .whatsapp{
 position:fixed;
@@ -168,13 +120,6 @@ border-radius:50%;
 font-size:22px;
 text-decoration:none;
 box-shadow:0 0 20px #25D366;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-0%{box-shadow:0 0 10px #25D366;}
-50%{box-shadow:0 0 25px #25D366;}
-100%{box-shadow:0 0 10px #25D366;}
 }
 
 footer{
@@ -183,11 +128,6 @@ padding:20px;
 background:black;
 margin-top:50px;
 }
-
-@media(max-width:768px){
-.hero h2{font-size:32px;}
-.cards{flex-direction:column;align-items:center;}
-}
 </style>
 </head>
 
@@ -195,40 +135,18 @@ margin-top:50px;
 
 <nav>
 <h1>Tapan VR</h1>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
 </nav>
 
 <section class="hero">
+
+<!-- ✅ VR Image Added -->
+<img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620" alt="VR Gaming">
+
 <h2>Welcome to Tapan Virtual Reality</h2>
 <p>Experience next-level immersive VR Gaming & Entertainment like never before.</p>
+
 <button class="btn" onclick="sendWhatsApp()">Book Now</button>
-</section>
 
-<section id="services">
-<h2 class="section-title">Our Services</h2>
-<div class="cards">
-<div class="card">
-<h3>VR Gaming Zone</h3>
-<p>High-end immersive VR gaming setup.</p>
-</div>
-<div class="card">
-<h3>VR Education</h3>
-<p>Interactive 3D learning experience.</p>
-</div>
-<div class="card">
-<h3>Event Setup</h3>
-<p>Birthday & corporate VR setup available.</p>
-</div>
-</div>
-</section>
-
-<section id="contact">
-<h2 class="section-title">Contact Us</h2>
-<p>Call or WhatsApp us for booking your VR experience today.</p>
 </section>
 
 <footer>
