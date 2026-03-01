@@ -16,9 +16,26 @@ scroll-behavior:smooth;
 }
 
 body{
-background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+background:#000;
 color:white;
 overflow-x:hidden;
+}
+
+/* 3D Animated Background */
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle,#00f7ff33 1px, transparent 1px);
+background-size:40px 40px;
+animation:moveBg 20s linear infinite;
+z-index:-1;
+}
+
+@keyframes moveBg{
+0%{transform:translate(0,0);}
+100%{transform:translate(-200px,-200px);}
 }
 
 /* Navbar */
@@ -26,8 +43,8 @@ nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 50px;
-background:rgba(0,0,0,0.6);
+padding:15px 40px;
+background:rgba(0,0,0,0.7);
 backdrop-filter:blur(15px);
 position:fixed;
 width:100%;
@@ -37,12 +54,11 @@ z-index:1000;
 
 nav h1{
 color:#00f7ff;
-font-size:24px;
 }
 
 nav ul{
 display:flex;
-gap:25px;
+gap:20px;
 list-style:none;
 }
 
@@ -66,21 +82,23 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
-background:radial-gradient(circle at center,#1b1b3a,#000);
 }
 
 .hero h2{
 font-size:55px;
 color:#00f7ff;
 text-shadow:0 0 25px #00f7ff;
-animation:fadeIn 2s ease-in-out;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
 }
 
 .hero p{
 margin-top:20px;
-font-size:18px;
 max-width:600px;
-opacity:0.9;
 }
 
 .btn{
@@ -96,23 +114,21 @@ transition:0.4s;
 }
 
 .btn:hover{
-background:white;
 transform:scale(1.1);
 }
 
-/* Section */
+/* Services */
 section{
 padding:100px 20px;
 text-align:center;
 }
 
 .section-title{
-font-size:38px;
+font-size:35px;
 margin-bottom:40px;
 color:#00f7ff;
 }
 
-/* Cards */
 .cards{
 display:flex;
 flex-wrap:wrap;
@@ -126,50 +142,18 @@ padding:30px;
 width:280px;
 border-radius:20px;
 backdrop-filter:blur(15px);
-transition:0.4s;
+transition:0.5s;
+transform-style:preserve-3d;
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px #00f7ff;
-}
-
-/* Gallery */
-.gallery img{
-width:250px;
-border-radius:15px;
-margin:10px;
-transition:0.4s;
-}
-
-.gallery img:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #00f7ff;
-}
-
-/* Pricing */
-.price{
-font-size:28px;
-margin:15px 0;
-color:#00f7ff;
+transform:rotateY(10deg) rotateX(10deg);
+box-shadow:0 0 30px #00f7ff;
 }
 
 /* Contact */
-input, textarea{
-width:90%;
-max-width:400px;
-padding:12px;
-margin:10px;
-border:none;
-border-radius:10px;
-outline:none;
-}
-
-footer{
-background:black;
-padding:20px;
-text-align:center;
-margin-top:50px;
+.contact-box{
+margin-top:30px;
 }
 
 /* WhatsApp Button */
@@ -181,21 +165,28 @@ background:#25D366;
 color:white;
 padding:15px;
 border-radius:50%;
-font-size:20px;
+font-size:22px;
 text-decoration:none;
-box-shadow:0 0 15px #25D366;
+box-shadow:0 0 20px #25D366;
+animation:pulse 2s infinite;
 }
 
-/* Animation */
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
+@keyframes pulse{
+0%{box-shadow:0 0 10px #25D366;}
+50%{box-shadow:0 0 25px #25D366;}
+100%{box-shadow:0 0 10px #25D366;}
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:black;
+margin-top:50px;
 }
 
 @media(max-width:768px){
-.hero h2{font-size:35px;}
+.hero h2{font-size:32px;}
 .cards{flex-direction:column;align-items:center;}
-.gallery img{width:90%;}
 }
 </style>
 </head>
@@ -205,24 +196,16 @@ to{opacity:1; transform:translateY(0);}
 <nav>
 <h1>Tapan VR</h1>
 <ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="#">Home</a></li>
 <li><a href="#services">Services</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#pricing">Pricing</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 
-<section class="hero" id="home">
+<section class="hero">
 <h2>Welcome to Tapan Virtual Reality</h2>
-<p>Experience next-generation immersive Virtual Reality gaming and entertainment like never before.</p>
-<button class="btn">Book Now</button>
-</section>
-
-<section id="about">
-<h2 class="section-title">About Us</h2>
-<p>We provide advanced VR gaming, VR education systems, and immersive experiences for events and businesses.</p>
+<p>Experience next-level immersive VR Gaming & Entertainment like never before.</p>
+<button class="btn" onclick="sendWhatsApp()">Book Now</button>
 </section>
 
 <section id="services">
@@ -234,58 +217,32 @@ to{opacity:1; transform:translateY(0);}
 </div>
 <div class="card">
 <h3>VR Education</h3>
-<p>Interactive 3D learning experiences.</p>
+<p>Interactive 3D learning experience.</p>
 </div>
 <div class="card">
 <h3>Event Setup</h3>
-<p>VR system for birthday & corporate events.</p>
-</div>
-</div>
-</section>
-
-<section id="gallery">
-<h2 class="section-title">Gallery</h2>
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620" alt="">
-<img src="https://images.unsplash.com/photo-1581090700227-1e8c8c2cbe07" alt="">
-<img src="https://images.unsplash.com/photo-1581091870622-3c1a0e88f8a3" alt="">
-</div>
-</section>
-
-<section id="pricing">
-<h2 class="section-title">Pricing</h2>
-<div class="cards">
-<div class="card">
-<h3>Basic</h3>
-<div class="price">₹499</div>
-<p>30 Minutes VR</p>
-</div>
-<div class="card">
-<h3>Standard</h3>
-<div class="price">₹999</div>
-<p>1 Hour Multiplayer</p>
-</div>
-<div class="card">
-<h3>Premium</h3>
-<div class="price">₹1999</div>
-<p>Unlimited + Event Setup</p>
+<p>Birthday & corporate VR setup available.</p>
 </div>
 </div>
 </section>
 
 <section id="contact">
 <h2 class="section-title">Contact Us</h2>
-<input type="text" placeholder="Your Name"><br>
-<input type="email" placeholder="Your Email"><br>
-<textarea rows="5" placeholder="Your Message"></textarea><br>
-<button class="btn">Send Message</button>
+<p>Call or WhatsApp us for booking your VR experience today.</p>
 </section>
 
 <footer>
-<p>© 2026 Tapan Virtual Reality | All Rights Reserved</p>
+© 2026 Tapan Virtual Reality | All Rights Reserved
 </footer>
 
-<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp">💬</a>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session." class="whatsapp">💬</a>
+
+<script>
+function sendWhatsApp(){
+window.open("https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session.","_blank");
+}
+</script>
 
 </body>
 </html>
