@@ -56,7 +56,7 @@ nav ul li a:hover{
 color:#00f7ff;
 }
 
-/* Hero */
+/* Hero */<h2 id="heroTitleDisplay">Welcome to Tapan Virtual Reality</h2>
 .hero{
 height:100vh;
 display:flex;
@@ -96,7 +96,7 @@ background:white;
 transform:scale(1.1);
 }
 
-/* Section */
+/* Section */<p id="aboutTextDisplay">We provide cutting-edge Virtual Reality experiences...</p>
 section{
 padding:100px 20px;
 text-align:center;
@@ -130,7 +130,9 @@ transform:translateY(-10px);
 box-shadow:0 0 20px #00f7ff;
 }
 
-/* Pricing */
+/* Pricing */<div class="price" id="price1Display">₹499</div>
+<div class="price" id="price2Display">₹999</div>
+<div class="price" id="price3Display">₹1999</div>
 .price{
 font-size:30px;
 margin:15px 0;
@@ -410,5 +412,10 @@ document.body.style.overflow="auto";
 </script>
 
 </body>
-</html>index.html
-intro.mp3
+</html><script>
+document.getElementById("heroTitleDisplay").innerText = localStorage.getItem("heroTitle") || "Welcome to Tapan Virtual Reality";
+document.getElementById("aboutTextDisplay").innerText = localStorage.getItem("aboutText") || "We provide cutting-edge Virtual Reality experiences...";
+document.getElementById("price1Display").innerText = localStorage.getItem("price1") || "₹499";
+document.getElementById("price2Display").innerText = localStorage.getItem("price2") || "₹999";
+document.getElementById("price3Display").innerText = localStorage.getItem("price3") || "₹1999";
+</script>
