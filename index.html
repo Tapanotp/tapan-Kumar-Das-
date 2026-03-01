@@ -18,6 +18,7 @@ scroll-behavior:smooth;
 body{
 background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
 color:white;
+overflow-x:hidden;
 }
 
 /* Navbar */
@@ -25,13 +26,13 @@ nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 40px;
+padding:15px 50px;
 background:rgba(0,0,0,0.6);
+backdrop-filter:blur(15px);
 position:fixed;
 width:100%;
 top:0;
 z-index:1000;
-backdrop-filter:blur(10px);
 }
 
 nav h1{
@@ -41,8 +42,8 @@ font-size:24px;
 
 nav ul{
 display:flex;
-list-style:none;
 gap:25px;
+list-style:none;
 }
 
 nav ul li a{
@@ -56,7 +57,7 @@ nav ul li a:hover{
 color:#00f7ff;
 }
 
-/* Hero */<h2 id="heroTitleDisplay">Welcome to Tapan Virtual Reality</h2>
+/* Hero */
 .hero{
 height:100vh;
 display:flex;
@@ -65,23 +66,26 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
+background:radial-gradient(circle at center,#1b1b3a,#000);
 }
 
 .hero h2{
-font-size:50px;
+font-size:55px;
 color:#00f7ff;
-text-shadow:0 0 20px #00f7ff;
+text-shadow:0 0 25px #00f7ff;
+animation:fadeIn 2s ease-in-out;
 }
 
 .hero p{
 margin-top:20px;
 font-size:18px;
 max-width:600px;
+opacity:0.9;
 }
 
 .btn{
 margin-top:30px;
-padding:12px 30px;
+padding:12px 35px;
 border:none;
 background:#00f7ff;
 color:black;
@@ -96,14 +100,14 @@ background:white;
 transform:scale(1.1);
 }
 
-/* Section */<p id="aboutTextDisplay">We provide cutting-edge Virtual Reality experiences...</p>
+/* Section */
 section{
 padding:100px 20px;
 text-align:center;
 }
 
 .section-title{
-font-size:35px;
+font-size:38px;
 margin-bottom:40px;
 color:#00f7ff;
 }
@@ -120,21 +124,32 @@ gap:30px;
 background:rgba(255,255,255,0.05);
 padding:30px;
 width:280px;
-border-radius:15px;
-backdrop-filter:blur(10px);
+border-radius:20px;
+backdrop-filter:blur(15px);
 transition:0.4s;
 }
 
 .card:hover{
 transform:translateY(-10px);
+box-shadow:0 0 25px #00f7ff;
+}
+
+/* Gallery */
+.gallery img{
+width:250px;
+border-radius:15px;
+margin:10px;
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
 box-shadow:0 0 20px #00f7ff;
 }
 
-/* Pricing */<div class="price" id="price1Display">₹499</div>
-<div class="price" id="price2Display">₹999</div>
-<div class="price" id="price3Display">₹1999</div>
+/* Pricing */
 .price{
-font-size:30px;
+font-size:28px;
 margin:15px 0;
 color:#00f7ff;
 }
@@ -144,7 +159,7 @@ input, textarea{
 width:90%;
 max-width:400px;
 padding:12px;
-margin:10px 0;
+margin:10px;
 border:none;
 border-radius:10px;
 outline:none;
@@ -157,14 +172,30 @@ text-align:center;
 margin-top:50px;
 }
 
+/* WhatsApp Button */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:20px;
+text-decoration:none;
+box-shadow:0 0 15px #25D366;
+}
+
+/* Animation */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
 @media(max-width:768px){
-.hero h2{
-font-size:32px;
-}
-.cards{
-flex-direction:column;
-align-items:center;
-}
+.hero h2{font-size:35px;}
+.cards{flex-direction:column;align-items:center;}
+.gallery img{width:90%;}
 }
 </style>
 </head>
@@ -177,6 +208,7 @@ align-items:center;
 <li><a href="#home">Home</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
 <li><a href="#pricing">Pricing</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -184,30 +216,39 @@ align-items:center;
 
 <section class="hero" id="home">
 <h2>Welcome to Tapan Virtual Reality</h2>
-<p>Experience the next generation immersive Virtual Reality technology with high quality gaming, education & entertainment solutions.</p>
-<button class="btn">Explore Now</button>
+<p>Experience next-generation immersive Virtual Reality gaming and entertainment like never before.</p>
+<button class="btn">Book Now</button>
 </section>
 
 <section id="about">
 <h2 class="section-title">About Us</h2>
-<p>We provide cutting-edge Virtual Reality experiences including VR gaming zones, VR education systems, and immersive 3D simulations for events and businesses.</p>
+<p>We provide advanced VR gaming, VR education systems, and immersive experiences for events and businesses.</p>
 </section>
 
 <section id="services">
 <h2 class="section-title">Our Services</h2>
 <div class="cards">
 <div class="card">
-<h3>VR Gaming</h3>
-<p>High quality immersive VR games with latest headsets.</p>
+<h3>VR Gaming Zone</h3>
+<p>High-end immersive VR gaming setup.</p>
 </div>
 <div class="card">
 <h3>VR Education</h3>
-<p>Interactive learning with 3D simulations for schools.</p>
+<p>Interactive 3D learning experiences.</p>
 </div>
 <div class="card">
 <h3>Event Setup</h3>
-<p>VR setup for birthday parties and corporate events.</p>
+<p>VR system for birthday & corporate events.</p>
 </div>
+</div>
+</section>
+
+<section id="gallery">
+<h2 class="section-title">Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620" alt="">
+<img src="https://images.unsplash.com/photo-1581090700227-1e8c8c2cbe07" alt="">
+<img src="https://images.unsplash.com/photo-1581091870622-3c1a0e88f8a3" alt="">
 </div>
 </section>
 
@@ -217,205 +258,34 @@ align-items:center;
 <div class="card">
 <h3>Basic</h3>
 <div class="price">₹499</div>
-<p>30 Minutes VR Gaming</p>
+<p>30 Minutes VR</p>
 </div>
 <div class="card">
 <h3>Standard</h3>
 <div class="price">₹999</div>
-<p>1 Hour VR + Multiplayer</p>
+<p>1 Hour Multiplayer</p>
 </div>
 <div class="card">
 <h3>Premium</h3>
 <div class="price">₹1999</div>
-<p>Unlimited Access + Event Setup</p>
+<p>Unlimited + Event Setup</p>
 </div>
 </div>
 </section>
 
 <section id="contact">
 <h2 class="section-title">Contact Us</h2>
-<form>
 <input type="text" placeholder="Your Name"><br>
 <input type="email" placeholder="Your Email"><br>
 <textarea rows="5" placeholder="Your Message"></textarea><br>
 <button class="btn">Send Message</button>
-</form>
 </section>
 
 <footer>
 <p>© 2026 Tapan Virtual Reality | All Rights Reserved</p>
 </footer>
 
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tapan Virtual Reality</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron',sans-serif;
-}
-
-body{
-background:#000;
-color:white;
-overflow:hidden;
-}
-
-/* Moving Background */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-background:linear-gradient(135deg,#000428,#004e92);
-}
-
-/* Intro Screen */
-#intro{
-position:fixed;
-width:100%;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-z-index:10;
-}
-
-#intro h1{
-font-size:32px;
-margin-bottom:20px;
-text-shadow:0 0 20px #00f2ff;
-animation:glow 2s infinite alternate;
-}
-
-.start-btn{
-padding:14px 40px;
-border:none;
-border-radius:50px;
-background:#00f2ff;
-color:black;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-transition:0.4s;
-}
-
-.start-btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 25px #00f2ff;
-}
-
-/* Main App Content */
-#app{
-display:none;
-padding:80px 20px;
-text-align:center;
-}
-
-#app h2{
-font-size:28px;
-margin-bottom:20px;
-text-shadow:0 0 15px #00f2ff;
-}
-
-.card-container{
-display:flex;
-flex-direction:column;
-gap:20px;
-margin-top:30px;
-}
-
-.card{
-background:rgba(255,255,255,0.08);
-padding:20px;
-border-radius:15px;
-backdrop-filter:blur(10px);
-transition:0.4s;
-}
-
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #00f2ff;
-}
-
-/* Animations */
-@keyframes glow{
-from{text-shadow:0 0 10px #00f2ff;}
-to{text-shadow:0 0 30px #00f2ff;}
-}
-</style>
-</head>
-<body>
-
-<div id="particles-js"></div>
-
-<audio id="introSound" src="intro.mp3"></audio>
-
-<!-- Intro Screen -->
-<div id="intro">
-<h1>Tapan Virtual Reality</h1>
-<button class="start-btn" onclick="startApp()">PRESS START</button>
-</div>
-
-<!-- App Content -->
-<div id="app">
-<h2>Welcome Gamer 🎮</h2>
-<p>Step Into The Virtual Universe</p>
-
-<div class="card-container">
-<div class="card">
-<h3>🎮 VR Gaming</h3>
-<p>High quality immersive gameplay.</p>
-</div>
-
-<div class="card">
-<h3>🌌 360° Tours</h3>
-<p>Interactive virtual world experience.</p>
-</div>
-
-<div class="card">
-<h3>🚀 Metaverse Events</h3>
-<p>Next level digital meetups & concerts.</p>
-</div>
-</div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-<script>
-particlesJS("particles-js", {
-"particles": {
-"number": {"value": 70},
-"size": {"value": 3},
-"move": {"speed": 2},
-"line_linked": {"enable": true},
-"color": {"value": "#00f2ff"}
-}
-});
-
-function startApp(){
-document.getElementById("introSound").play();
-document.getElementById("intro").style.display="none";
-document.getElementById("app").style.display="block";
-document.body.style.overflow="auto";
-}
-</script>
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp">💬</a>
 
 </body>
-</html><script>
-document.getElementById("heroTitleDisplay").innerText = localStorage.getItem("heroTitle") || "Welcome to Tapan Virtual Reality";
-document.getElementById("aboutTextDisplay").innerText = localStorage.getItem("aboutText") || "We provide cutting-edge Virtual Reality experiences...";
-document.getElementById("price1Display").innerText = localStorage.getItem("price1") || "₹499";
-document.getElementById("price2Display").innerText = localStorage.getItem("price2") || "₹999";
-document.getElementById("price3Display").innerText = localStorage.getItem("price3") || "₹1999";
-</script>
+</html>
