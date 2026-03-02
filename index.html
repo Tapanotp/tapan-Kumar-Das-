@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Local Boy raghu Gas Agency</title>
+<title>Local Boy Gas Agency</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
@@ -83,6 +83,12 @@ margin:15px 0;
 text-shadow:0 0 20px #00ffcc;
 }
 
+.stock{
+font-size:18px;
+margin-top:5px;
+font-weight:bold;
+}
+
 .link{
 margin-top:15px;
 color:#00f2ff;
@@ -103,6 +109,7 @@ cursor:pointer;
 <div class="card">
 
 <div class="price">₹<span id="livePrice">0</span></div>
+<div id="stockStatus" class="stock"></div>
 
 <input id="name" placeholder="Customer Name">
 <input id="mobile" placeholder="Customer Mobile Number">
@@ -142,17 +149,23 @@ cursor:pointer;
 <h3>Update Cylinder Price</h3>
 <input id="newPrice" placeholder="Enter New Price">
 <button onclick="changePrice()">Update Price</button>
+
+<h3 style="margin-top:15px;">Update Stock</h3>
+<input id="newStock" placeholder="Enter Stock Quantity">
+<button onclick="changeStock()">Update Stock</button>
 </div>
 
 <div class="link" onclick="logout()">Logout</div>
 </div>
 
 <script>
-let price = localStorage.getItem("price") || 950;
-price = parseInt(price);
-animatePrice(0, price);
+let price = parseInt(localStorage.getItem("price")) || 950;
+let stock = parseInt(localStorage.getItem("stock")) || 50;
 
-/* 🔥 Smooth Animated Price */
+animatePrice(0, price);
+updateStockDisplay();
+
+/* Animated Price */
 function animatePrice(start, target){
 let duration = 800;
 let startTime = null;
@@ -183,8 +196,36 @@ alert("Price Updated Successfully");
 }
 }
 
+/* Update Stock */
+function changeStock(){
+let newS = document.getElementById("newStock").value;
+if(newS){
+stock = parseInt(newS);
+localStorage.setItem("stock",stock);
+updateStockDisplay();
+alert("Stock Updated Successfully");
+}
+}
+
+function updateStockDisplay(){
+let stockDiv = document.getElementById("stockStatus");
+
+if(stock > 0){
+stockDiv.innerHTML = "Stock Available: " + stock + " Cylinders ✅";
+stockDiv.style.color = "#00ff99";
+}else{
+stockDiv.innerHTML = "Not Available ❌";
+stockDiv.style.color = "red";
+}
+}
+
 /* Booking */
 function book(){
+if(stock <= 0){
+alert("Stock Not Available");
+return;
+}
+
 let name=document.getElementById("name").value;
 let mobile=document.getElementById("mobile").value;
 let consumer=document.getElementById("consumer").value;
@@ -206,6 +247,10 @@ Payment: ${payment}
 Amount: ₹${price}`;
 
 window.open(`https://wa.me/919778745403?text=${encodeURIComponent(message)}`);
+
+stock--;
+localStorage.setItem("stock",stock);
+updateStockDisplay();
 
 document.getElementById("msg").innerHTML="Booking ID: "+id;
 }
