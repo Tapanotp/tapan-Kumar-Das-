@@ -1,247 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tapan Virtual Reality</title>
+<title>Local Boy raghu Gas Agency</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron', sans-serif;
-scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
 
 body{
-background:#000;
+background:#0a0a12;
 color:white;
-overflow-x:hidden;
+overflow:hidden;
 }
 
-/* 3D Animated Background */
-body::before{
-content:"";
+canvas{
 position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#00f7ff33 1px, transparent 1px);
-background-size:40px 40px;
-animation:moveBg 20s linear infinite;
+top:0;
+left:0;
 z-index:-1;
 }
 
-@keyframes moveBg{
-0%{transform:translate(0,0);}
-100%{transform:translate(-200px,-200px);}
-}
-
-/* Navbar */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 40px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(15px);
-position:fixed;
-width:100%;
-top:0;
-z-index:1000;
-}
-
-nav h1{
-color:#00f7ff;
-}
-
-nav ul{
-display:flex;
-gap:20px;
-list-style:none;
-}
-
-nav ul li a{
-color:white;
-text-decoration:none;
-font-size:14px;
-transition:0.3s;
-}
-
-nav ul li a:hover{
-color:#00f7ff;
-}
-
-/* Hero */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
+.container{
 padding:20px;
-}
-
-.hero h2{
-font-size:55px;
-color:#00f7ff;
-text-shadow:0 0 25px #00f7ff;
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
-}
-
-.hero p{
-margin-top:20px;
-max-width:600px;
-}
-
-.btn{
-margin-top:30px;
-padding:12px 35px;
-border:none;
-background:#00f7ff;
-color:black;
-font-weight:bold;
-cursor:pointer;
-border-radius:30px;
-transition:0.4s;
-}
-
-.btn:hover{
-transform:scale(1.1);
-}
-
-/* Services */
-section{
-padding:100px 20px;
 text-align:center;
+display:none;
 }
 
-.section-title{
-font-size:35px;
-margin-bottom:40px;
-color:#00f7ff;
+.active{display:block;}
+
+h1{
+color:#00f2ff;
+text-shadow:0 0 20px #00f2ff;
+margin-bottom:5px;
 }
 
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
+.owner{
+font-size:14px;
+color:#00ffcc;
+}
+
+.emergency{
+font-size:13px;
+color:#ff4d4d;
+margin-bottom:10px;
 }
 
 .card{
-background:rgba(255,255,255,0.05);
-padding:30px;
-width:280px;
-border-radius:20px;
-backdrop-filter:blur(15px);
-transition:0.5s;
-transform-style:preserve-3d;
-}
-
-.card:hover{
-transform:rotateY(10deg) rotateX(10deg);
-box-shadow:0 0 30px #00f7ff;
-}
-
-/* Contact */
-.contact-box{
-margin-top:30px;
-}
-
-/* WhatsApp Button */
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:15px;
-border-radius:50%;
-font-size:22px;
-text-decoration:none;
-box-shadow:0 0 20px #25D366;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-0%{box-shadow:0 0 10px #25D366;}
-50%{box-shadow:0 0 25px #25D366;}
-100%{box-shadow:0 0 10px #25D366;}
-}
-
-footer{
-text-align:center;
+background:#111122;
 padding:20px;
-background:black;
-margin-top:50px;
+border-radius:15px;
+box-shadow:0 0 25px #00f2ff55;
+margin-top:15px;
 }
 
-@media(max-width:768px){
-.hero h2{font-size:32px;}
-.cards{flex-direction:column;align-items:center;}
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:none;
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:#00f2ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
+width:100%;
+}
+
+.price{
+font-size:40px;
+font-weight:900;
+color:#00ffcc;
+margin:15px 0;
+text-shadow:0 0 20px #00ffcc;
+}
+
+.link{
+margin-top:15px;
+color:#00f2ff;
+cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
-<nav>
-<h1>Tapan VR</h1>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+<canvas id="bg"></canvas>
 
-<section class="hero">
-<h2>Welcome to Tapan Virtual Reality</h2>
-<p>Experience next-level immersive VR Gaming & Entertainment like never before.</p>
-<button class="btn" onclick="sendWhatsApp()">Book Now</button>
-</section>
+<!-- USER PAGE -->
+<div id="user" class="container active">
+<h1>Local Boy Gas Agency</h1>
+<div class="owner">Owner: Raghu Nath Bhanja</div>
+<div class="emergency">Emergency: 9778745403</div>
 
-<section id="services">
-<h2 class="section-title">Our Services</h2>
-<div class="cards">
 <div class="card">
-<h3>VR Gaming Zone</h3>
-<p>High-end immersive VR gaming setup.</p>
+
+<div class="price">₹<span id="livePrice">0</span></div>
+
+<input id="name" placeholder="Customer Name">
+<input id="mobile" placeholder="Customer Mobile Number">
+<input id="consumer" placeholder="Consumer Number">
+
+<select id="payment">
+<option value="COD">Cash on Delivery</option>
+<option value="UPI">Online UPI Payment</option>
+</select>
+
+<button onclick="book()">Book Now</button>
+<p id="msg"></p>
+
 </div>
+
+<div class="link" onclick="showAdminLogin()">Admin Panel</div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="adminLogin" class="container">
+<h1>Admin Login</h1>
+
 <div class="card">
-<h3>VR Education</h3>
-<p>Interactive 3D learning experience.</p>
+<input id="adminUser" placeholder="Username">
+<input type="password" id="adminPass" placeholder="Password">
+<button onclick="adminLogin()">Login</button>
 </div>
+
+<div class="link" onclick="showUser()">Back</div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="container">
+<h1>Admin Panel</h1>
+
 <div class="card">
-<h3>Event Setup</h3>
-<p>Birthday & corporate VR setup available.</p>
+<h3>Update Cylinder Price</h3>
+<input id="newPrice" placeholder="Enter New Price">
+<button onclick="changePrice()">Update Price</button>
 </div>
+
+<div class="link" onclick="logout()">Logout</div>
 </div>
-</section>
-
-<section id="contact">
-<h2 class="section-title">Contact Us</h2>
-<p>Call or WhatsApp us for booking your VR experience today.</p>
-</section>
-
-<footer>
-© 2026 Tapan Virtual Reality | All Rights Reserved
-</footer>
-
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session." class="whatsapp">💬</a>
 
 <script>
-function sendWhatsApp(){
-window.open("https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session.","_blank");
+let price = localStorage.getItem("price") || 950;
+price = parseInt(price);
+animatePrice(0, price);
+
+/* 🔥 Smooth Animated Price */
+function animatePrice(start, target){
+let duration = 800;
+let startTime = null;
+
+function animation(currentTime){
+if(!startTime) startTime = currentTime;
+let progress = currentTime - startTime;
+let percent = Math.min(progress / duration, 1);
+let value = Math.floor(percent * (target - start) + start);
+document.getElementById("livePrice").innerText = value;
+
+if(percent < 1){
+requestAnimationFrame(animation);
 }
+}
+requestAnimationFrame(animation);
+}
+
+/* Update Price */
+function changePrice(){
+let newP = document.getElementById("newPrice").value;
+if(newP){
+let oldPrice = price;
+price = parseInt(newP);
+localStorage.setItem("price",price);
+animatePrice(oldPrice, price);
+alert("Price Updated Successfully");
+}
+}
+
+/* Booking */
+function book(){
+let name=document.getElementById("name").value;
+let mobile=document.getElementById("mobile").value;
+let consumer=document.getElementById("consumer").value;
+let payment=document.getElementById("payment").value;
+
+if(!name || !mobile){
+alert("Please fill all details");
+return;
+}
+
+let id="LB"+Math.floor(Math.random()*100000);
+
+let message=`New Gas Booking
+ID: ${id}
+Name: ${name}
+Mobile: ${mobile}
+Consumer No: ${consumer}
+Payment: ${payment}
+Amount: ₹${price}`;
+
+window.open(`https://wa.me/919778745403?text=${encodeURIComponent(message)}`);
+
+document.getElementById("msg").innerHTML="Booking ID: "+id;
+}
+
+/* Admin Navigation */
+function showAdminLogin(){
+document.getElementById("user").classList.remove("active");
+document.getElementById("adminLogin").classList.add("active");
+}
+
+function adminLogin(){
+let user=document.getElementById("adminUser").value;
+let pass=document.getElementById("adminPass").value;
+
+if(user==="Raghu" && pass==="Tapan@8260"){
+document.getElementById("adminLogin").classList.remove("active");
+document.getElementById("adminPanel").classList.add("active");
+}else{
+alert("Wrong Username or Password");
+}
+}
+
+function logout(){
+document.getElementById("adminPanel").classList.remove("active");
+document.getElementById("user").classList.add("active");
+}
+
+function showUser(){
+document.getElementById("adminLogin").classList.remove("active");
+document.getElementById("user").classList.add("active");
+}
+
+/* Background Particles */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#00f2ff";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+});
+requestAnimationFrame(draw);
+}
+draw();
 </script>
 
 </body>
