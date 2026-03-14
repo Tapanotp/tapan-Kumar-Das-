@@ -13,7 +13,9 @@ background:black;
 color:white;
 text-align:center;
 overflow-x:hidden;
+position:relative;
 }
+
 /* Cyber grid background */
 body::before{
 content:"";
@@ -26,25 +28,35 @@ linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px);
 background-size:40px 40px;
 z-index:-2;
 }
+
 /* Neon title */
 .title{
 font-size:50px;
 color:cyan;
 text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;
 animation:titlePulse 2s infinite alternate;
+margin-top:30px;
 }
 @keyframes titlePulse{
 0%{text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;}
 50%{text-shadow:0 0 20px cyan,0 0 40px cyan,0 0 60px cyan;}
 100%{text-shadow:0 0 15px cyan,0 0 30px cyan,0 0 50px cyan;}
 }
-/* Developer credit above title */
-.developer{
-color:#22c55e; /* Green color for Tapan Kumar Das */
-font-size:20px;
-text-shadow:0 0 10px #22c55e;
-margin-bottom:5px;
+
+/* Neon animated owner name below title */
+.owner{
+font-size:22px;
+color:#22c55e; /* green neon */
+text-shadow:0 0 10px #22c55e,0 0 20px #22c55e,0 0 40px #22c55e;
+animation:ownerPulse 1.8s infinite alternate;
+margin-bottom:10px;
 }
+@keyframes ownerPulse{
+0%{text-shadow:0 0 10px #22c55e,0 0 20px #22c55e;}
+50%{text-shadow:0 0 20px #22c55e,0 0 40px #22c55e,0 0 60px #22c55e;}
+100%{text-shadow:0 0 15px #22c55e,0 0 30px #22c55e,0 0 50px #22c55e;}
+}
+
 /* Cards */
 .card{
 background:rgba(0,255,255,0.05);
@@ -63,7 +75,7 @@ animation:floatPulse 3s infinite alternate;
 100%{transform:translateY(0px); box-shadow:0 0 15px cyan;}
 }
 
-/* Button */
+/* Buttons */
 .btn{
 background:#25D366;
 padding:15px 25px;
@@ -79,6 +91,7 @@ transition:0.3s;
 box-shadow:0 0 25px #25D366;
 transform:scale(1.05);
 }
+
 /* Map */
 .map{
 width:90%;
@@ -87,6 +100,7 @@ border:0;
 border-radius:10px;
 box-shadow:0 0 20px cyan;
 }
+
 /* Floating WhatsApp group */
 .group{
 position:fixed;
@@ -99,6 +113,7 @@ border-radius:30px;
 text-decoration:none;
 box-shadow:0 0 20px #25D366;
 }
+
 /* Particles */
 canvas{
 position:fixed;
@@ -106,11 +121,27 @@ top:0;
 left:0;
 z-index:-1;
 }
+
 /* Footer */
 footer{
 background:#111;
 padding:20px;
 color:#aaa;
+position:relative;
+}
+
+/* Footer watermark */
+.watermark{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+font-size:40px;
+color:rgba(34,197,94,0.1); /* transparent green */
+font-weight:bold;
+pointer-events:none;
+user-select:none;
+z-index:0;
 }
 </style>
 </head>
@@ -119,12 +150,12 @@ color:#aaa;
 
 <canvas id="particles"></canvas>
 
-<!-- Developer Credit Above Title -->
-<div class="developer">Website Developed by Tapan Kumar Das</div>
-
+<!-- Title & Animated Owner Name -->
 <h1 class="title">⚡ Jaga Electrical ⚡</h1>
+<div class="owner">Tapan Kumar Das</div>
 <p>Naikudi Bazaar, Baleswar, Odisha</p>
 
+<!-- Cards -->
 <div class="card">
 <h2>About Our Shop</h2>
 <p>All types of electrical items available here with best quality service.</p>
@@ -167,6 +198,7 @@ src="https://maps.google.com/maps?q=Naikudi%20Bazaar%20Baleswar&t=&z=13&ie=UTF8&
 <footer>
 <p>© 2026 Jaga Electrical</p>
 <p>Website Developed by <b style="color:#22c55e;">Tapan Kumar Das</b></p>
+<div class="watermark">Tapan Kumar Das</div>
 </footer>
 
 <a class="group"
