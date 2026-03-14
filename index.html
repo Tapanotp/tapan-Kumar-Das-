@@ -3,245 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tapan Virtual Reality</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<title>Jaga Electrical | Tapan Kumar Das</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron', sans-serif;
-scroll-behavior:smooth;
-}
-
 body{
-background:#000;
+margin:0;
+font-family:Arial;
+background:black;
 color:white;
+text-align:center;
 overflow-x:hidden;
 }
-
-/* 3D Animated Background */
+/* Cyber grid background */
 body::before{
 content:"";
 position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#00f7ff33 1px, transparent 1px);
-background-size:40px 40px;
-animation:moveBg 20s linear infinite;
-z-index:-1;
-}
-
-@keyframes moveBg{
-0%{transform:translate(0,0);}
-100%{transform:translate(-200px,-200px);}
-}
-
-/* Navbar */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 40px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(15px);
-position:fixed;
 width:100%;
-top:0;
-z-index:1000;
+height:100%;
+background:
+linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-2;
 }
-
-nav h1{
-color:#00f7ff;
+/* Neon title */
+.title{
+font-size:50px;
+color:cyan;
+text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;
 }
-
-nav ul{
-display:flex;
-gap:20px;
-list-style:none;
+/* Developer credit above title */
+.developer{
+color:#0ff;
+font-size:20px;
+text-shadow:0 0 10px #0ff;
+margin-bottom:5px;
 }
-
-nav ul li a{
-color:white;
-text-decoration:none;
-font-size:14px;
-transition:0.3s;
-}
-
-nav ul li a:hover{
-color:#00f7ff;
-}
-
-/* Hero */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
-
-.hero h2{
-font-size:55px;
-color:#00f7ff;
-text-shadow:0 0 25px #00f7ff;
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
-}
-
-.hero p{
-margin-top:20px;
-max-width:600px;
-}
-
-.btn{
-margin-top:30px;
-padding:12px 35px;
-border:none;
-background:#00f7ff;
-color:black;
-font-weight:bold;
-cursor:pointer;
-border-radius:30px;
-transition:0.4s;
-}
-
-.btn:hover{
-transform:scale(1.1);
-}
-
-/* Services */
-section{
-padding:100px 20px;
-text-align:center;
-}
-
-.section-title{
-font-size:35px;
-margin-bottom:40px;
-color:#00f7ff;
-}
-
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
-}
-
+/* Cards */
 .card{
-background:rgba(255,255,255,0.05);
-padding:30px;
-width:280px;
-border-radius:20px;
-backdrop-filter:blur(15px);
-transition:0.5s;
-transform-style:preserve-3d;
+background:rgba(0,255,255,0.05);
+border:1px solid cyan;
+margin:40px;
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 20px cyan;
+opacity:0;
+transform:translateY(60px);
+transition:1s;
 }
-
-.card:hover{
-transform:rotateY(10deg) rotateX(10deg);
-box-shadow:0 0 30px #00f7ff;
+.card.show{
+opacity:1;
+transform:translateY(0);
 }
-
-/* Contact */
-.contact-box{
-margin-top:30px;
+/* Button */
+.btn{
+background:#25D366;
+padding:15px 25px;
+border:none;
+border-radius:8px;
+font-size:18px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px #25D366;
 }
-
-/* WhatsApp Button */
-.whatsapp{
+.btn:hover{
+box-shadow:0 0 25px #25D366;
+}
+/* Map */
+.map{
+width:90%;
+height:300px;
+border:0;
+border-radius:10px;
+box-shadow:0 0 20px cyan;
+}
+/* Floating WhatsApp group */
+.group{
 position:fixed;
 bottom:20px;
 right:20px;
 background:#25D366;
 color:white;
-padding:15px;
-border-radius:50%;
-font-size:22px;
+padding:15px 20px;
+border-radius:30px;
 text-decoration:none;
 box-shadow:0 0 20px #25D366;
-animation:pulse 2s infinite;
 }
-
-@keyframes pulse{
-0%{box-shadow:0 0 10px #25D366;}
-50%{box-shadow:0 0 25px #25D366;}
-100%{box-shadow:0 0 10px #25D366;}
+/* Particles */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
-
+/* Footer */
 footer{
-text-align:center;
+background:#111;
 padding:20px;
-background:black;
-margin-top:50px;
-}
-
-@media(max-width:768px){
-.hero h2{font-size:32px;}
-.cards{flex-direction:column;align-items:center;}
+color:#aaa;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-<h1>Tapan VR</h1>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+<canvas id="particles"></canvas>
 
-<section class="hero">
-<h2>Welcome to Tapan Virtual Reality</h2>
-<p>Experience next-level immersive VR Gaming & Entertainment like never before.</p>
-<button class="btn" onclick="sendWhatsApp()">Book Now</button>
-</section>
+<!-- Developer Credit Above Title -->
+<div class="developer">Website Developed by Tapan Kumar Das</div>
 
-<section id="services">
-<h2 class="section-title">Our Services</h2>
-<div class="cards">
-<div class="card">
-<h3>VR Gaming Zone</h3>
-<p>High-end immersive VR gaming setup.</p>
-</div>
-<div class="card">
-<h3>VR Education</h3>
-<p>Interactive 3D learning experience.</p>
-</div>
-<div class="card">
-<h3>Event Setup</h3>
-<p>Birthday & corporate VR setup available.</p>
-</div>
-</div>
-</section>
+<h1 class="title">⚡ Jaga Electrical ⚡</h1>
+<p>Naikudi Bazaar, Baleswar, Odisha</p>
 
-<section id="contact">
-<h2 class="section-title">Contact Us</h2>
-<p>Call or WhatsApp us for booking your VR experience today.</p>
-</section>
+<div class="card">
+<h2>About Our Shop</h2>
+<p>All types of electrical items available here with best quality service.</p>
+</div>
+
+<div class="card">
+<h2>Online Order</h2>
+<p>Apana ghare basi electrical saman order kariparibe.</p>
+<p><b>Order Kemiti Karibe:</b></p>
+<p>1️⃣ WhatsApp Group join karantu.</p>
+<p>2️⃣ Product name ba photo pathantu.</p>
+<p>3️⃣ Ame price confirm karibu.</p>
+<p>4️⃣ Shiprocket dwara fast delivery miliba.</p>
+<a href="https://chat.whatsapp.com/GTTSU5lIxMh2vf0qxv0WY9?mode=gi_t" target="_blank">
+<button class="btn">📦 Order Now</button>
+</a>
+</div>
+
+<div class="card">
+<h2>Join Our WhatsApp Group</h2>
+<p>Get latest offers and product updates.</p>
+<a href="https://chat.whatsapp.com/GTTSU5lIxMh2vf0qxv0WY9?mode=gi_t" target="_blank">
+<button class="btn">👥 Join WhatsApp Group</button>
+</a>
+</div>
+
+<div class="card">
+<h2>Our Location</h2>
+<iframe class="map"
+src="https://maps.google.com/maps?q=Naikudi%20Bazaar%20Baleswar&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+</div>
+
+<div class="card">
+<h2>Contact</h2>
+<p>📞 +91 8280247295</p>
+<p>📍 Naikudi Bazaar, Baleswar</p>
+</div>
 
 <footer>
-© 2026 Tapan Virtual Reality | All Rights Reserved
+<p>© 2026 Jaga Electrical</p>
+<p>Website Developed by <b>Tapan Kumar Das</b></p>
 </footer>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session." class="whatsapp">💬</a>
+<a class="group"
+href="https://chat.whatsapp.com/GTTSU5lIxMh2vf0qxv0WY9?mode=gi_t" target="_blank">
+👥 Join Group
+</a>
 
 <script>
-function sendWhatsApp(){
-window.open("https://wa.me/917605908862?text=Hello%20Tapan%20Virtual%20Reality,%20I%20want%20to%20book%20a%20VR%20session.","_blank");
+/* Scroll animation */
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+cards.forEach(card=>{
+const top=card.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+card.classList.add("show");
 }
+});
+});
+
+/* Neon particles */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="cyan";
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+if(p.x<0||p.x>canvas.width) p.dx*=-1;
+if(p.y<0||p.y>canvas.height) p.dy*=-1;
+});
+requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
