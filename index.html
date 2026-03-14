@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jaga Electrical | Tapan Kumar Das</title>
+<title>Jaga Electrical</title>
 
 <style>
 body{
@@ -23,38 +23,32 @@ position:fixed;
 width:100%;
 height:100%;
 background:
-linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px);
+linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
 background-size:40px 40px;
 z-index:-2;
 }
 
-/* Neon title */
+/* Neon brand title */
 .title{
-font-size:50px;
-color:cyan;
-text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;
-animation:titlePulse 2s infinite alternate;
+font-size:60px;
+font-weight:bold;
+color:#00ffff;
+text-transform:uppercase;
+letter-spacing:4px;
+text-shadow:
+0 0 10px #00ffff,
+0 0 20px #00ffff,
+0 0 40px #00ffff,
+0 0 60px #0ff,
+0 0 80px #0ff;
+animation:brandPulse 2s infinite alternate;
 margin-top:30px;
 }
-@keyframes titlePulse{
-0%{text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;}
-50%{text-shadow:0 0 20px cyan,0 0 40px cyan,0 0 60px cyan;}
-100%{text-shadow:0 0 15px cyan,0 0 30px cyan,0 0 50px cyan;}
-}
-
-/* Neon animated owner name below title */
-.owner{
-font-size:22px;
-color:#22c55e; /* green neon */
-text-shadow:0 0 10px #22c55e,0 0 20px #22c55e,0 0 40px #22c55e;
-animation:ownerPulse 1.8s infinite alternate;
-margin-bottom:10px;
-}
-@keyframes ownerPulse{
-0%{text-shadow:0 0 10px #22c55e,0 0 20px #22c55e;}
-50%{text-shadow:0 0 20px #22c55e,0 0 40px #22c55e,0 0 60px #22c55e;}
-100%{text-shadow:0 0 15px #22c55e,0 0 30px #22c55e,0 0 50px #22c55e;}
+@keyframes brandPulse{
+0%{text-shadow:0 0 10px #00ffff,0 0 20px #00ffff,0 0 40px #00ffff;}
+50%{text-shadow:0 0 20px #00ffff,0 0 40px #00ffff,0 0 80px #0ff;}
+100%{text-shadow:0 0 15px #00ffff,0 0 30px #00ffff,0 0 60px #0ff;}
 }
 
 /* Cards */
@@ -150,9 +144,8 @@ z-index:0;
 
 <canvas id="particles"></canvas>
 
-<!-- Title & Animated Owner Name -->
+<!-- Brand Title -->
 <h1 class="title">⚡ Jaga Electrical ⚡</h1>
-<div class="owner">Tapan Kumar Das</div>
 <p>Naikudi Bazaar, Baleswar, Odisha</p>
 
 <!-- Cards -->
@@ -197,7 +190,6 @@ src="https://maps.google.com/maps?q=Naikudi%20Bazaar%20Baleswar&t=&z=13&ie=UTF8&
 
 <footer>
 <p>© 2026 Jaga Electrical</p>
-<p>Website Developed by <b style="color:#22c55e;">Tapan Kumar Das</b></p>
 <div class="watermark">Tapan Kumar Das</div>
 </footer>
 
