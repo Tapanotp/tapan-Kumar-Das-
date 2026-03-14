@@ -31,12 +31,18 @@ z-index:-2;
 font-size:50px;
 color:cyan;
 text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;
+animation:titlePulse 2s infinite alternate;
+}
+@keyframes titlePulse{
+0%{text-shadow:0 0 10px cyan,0 0 20px cyan,0 0 40px cyan;}
+50%{text-shadow:0 0 20px cyan,0 0 40px cyan,0 0 60px cyan;}
+100%{text-shadow:0 0 15px cyan,0 0 30px cyan,0 0 50px cyan;}
 }
 /* Developer credit above title */
 .developer{
-color:#0ff;
+color:#22c55e; /* Green color for Tapan Kumar Das */
 font-size:20px;
-text-shadow:0 0 10px #0ff;
+text-shadow:0 0 10px #22c55e;
 margin-bottom:5px;
 }
 /* Cards */
@@ -47,14 +53,16 @@ margin:40px;
 padding:25px;
 border-radius:12px;
 box-shadow:0 0 20px cyan;
-opacity:0;
-transform:translateY(60px);
-transition:1s;
-}
-.card.show{
 opacity:1;
 transform:translateY(0);
+animation:floatPulse 3s infinite alternate;
 }
+@keyframes floatPulse{
+0%{transform:translateY(0px); box-shadow:0 0 15px cyan;}
+50%{transform:translateY(-10px); box-shadow:0 0 25px cyan;}
+100%{transform:translateY(0px); box-shadow:0 0 15px cyan;}
+}
+
 /* Button */
 .btn{
 background:#25D366;
@@ -65,9 +73,11 @@ font-size:18px;
 color:white;
 cursor:pointer;
 box-shadow:0 0 15px #25D366;
+transition:0.3s;
 }
 .btn:hover{
 box-shadow:0 0 25px #25D366;
+transform:scale(1.05);
 }
 /* Map */
 .map{
@@ -156,7 +166,7 @@ src="https://maps.google.com/maps?q=Naikudi%20Bazaar%20Baleswar&t=&z=13&ie=UTF8&
 
 <footer>
 <p>© 2026 Jaga Electrical</p>
-<p>Website Developed by <b>Tapan Kumar Das</b></p>
+<p>Website Developed by <b style="color:#22c55e;">Tapan Kumar Das</b></p>
 </footer>
 
 <a class="group"
@@ -165,17 +175,6 @@ href="https://chat.whatsapp.com/GTTSU5lIxMh2vf0qxv0WY9?mode=gi_t" target="_blank
 </a>
 
 <script>
-/* Scroll animation */
-const cards=document.querySelectorAll(".card");
-window.addEventListener("scroll",()=>{
-cards.forEach(card=>{
-const top=card.getBoundingClientRect().top;
-if(top<window.innerHeight-100){
-card.classList.add("show");
-}
-});
-});
-
 /* Neon particles */
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
